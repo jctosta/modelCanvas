@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Titillium Web', sans-serif; }
+
+.canvas .full-height .title {
+  height: 40px;
+  font-weight: bold;
+  padding-left: 10px;
+  line-height: 40px; }
+
+.canvas .full-height .content {
+  height: 360px;
+  overflow: auto; }
+
+.canvas .half-height .title {
+  height: 40px;
+  font-weight: bold;
+  padding-left: 10px;
+  line-height: 40px; }
+
+.canvas .half-height .content {
+  height: 160px;
+  overflow: auto; }
+
+.canvas div.col-3, .canvas div.col-6 {
+  padding: 0; }
+
+.canvas .middle-col {
+  padding: 0; }
+
+.canvas .card {
+  margin: 10px auto;
+  width: 80%; }
+
+.canvas .drop-area {
+  margin: -1px;
+  border: 3px solid #000;
+  width: 100%; }
