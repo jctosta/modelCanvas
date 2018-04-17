@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Container } from 'reactstrap';
-import Canvas from './components/Canvas';
+import Canvas from './components/CanvasAlt';
 import AppNav from './components/Nav';
+import blank_canvas from './data/blank_canvas.json';
 
-const dataURL = 'https://gist.githubusercontent.com/jctosta/71ed43008db8e4e73774c49c30fde199/raw/a636adbb36327e912ba05e583bedc57a13dc4c6f/canvas.json';
+const dataURL = 'https://gist.githubusercontent.com/jctosta/71ed43008db8e4e73774c49c30fde199/raw/f0cca33cacd6873306292476b215c44bab3cc362/canvas.json';
 
 class App extends Component {
   
@@ -13,7 +13,7 @@ class App extends Component {
     this.toggle = this.toggle.bind(this);
 
     this.state = {
-      canvas: undefined,
+      canvas: blank_canvas.canvas,
       isOpen: false
     };
 
@@ -38,18 +38,11 @@ class App extends Component {
   }
 
   render() {
-    let renderCanvas = undefined;
-    if (this.state.canvas === undefined) {
-      renderCanvas = <br />;
-    } else {
-      renderCanvas = <Canvas value={this.state.canvas} />;
-    }
+    console.log(blank_canvas);
     return (
-      <section className="h-100">
-        <AppNav toggle={this.toggle} isOpen={this.state.isOpen} />
-        <Container fluid className="h-100">
-          {renderCanvas}
-        </Container>        
+      <section>
+        <AppNav />
+        <Canvas value={this.state.canvas} />
       </section>
     );
   }

@@ -1,39 +1,193 @@
+* {
+  box-sizing: border-box; }
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Titillium Web', sans-serif; }
+  font-family: 'Titillium Web', sans-serif;
+  height: 100vh; }
 
-.canvas .full-height .title {
-  height: 40px;
-  font-weight: bold;
-  padding-left: 10px;
-  line-height: 40px; }
+@page {
+  size: A4 landscape; }
 
-.canvas .full-height .content {
-  height: 360px;
-  overflow: auto; }
+#root {
+  height: 100%; }
+  #root section {
+    height: 100%; }
 
-.canvas .half-height .title {
-  height: 40px;
-  font-weight: bold;
-  padding-left: 10px;
-  line-height: 40px; }
+.nav {
+  height: 50px;
+  width: 100%;
+  background-color: #4d4d4d;
+  position: relative; }
 
-.canvas .half-height .content {
-  height: 160px;
-  overflow: auto; }
+.nav > .nav-header {
+  display: inline; }
 
-.canvas div.col-3, .canvas div.col-6 {
-  padding: 0; }
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  padding: 10px 10px 10px 10px; }
 
-.canvas .middle-col {
-  padding: 0; }
+.nav > .nav-btn {
+  display: none; }
 
-.canvas .card {
-  margin: 10px auto;
-  width: 80%; }
+.nav > .nav-links {
+  display: inline;
+  float: right;
+  font-size: 18px; }
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #efefef; }
+
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3); }
+
+.nav > #nav-check {
+  display: none; }
+
+@media (max-width: 600px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px; }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px; }
+  .nav > .nav-btn > label:hover {
+    background-color: rgba(0, 0, 0, 0.3); }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee; }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px; }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%; }
+  .nav > #nav-check:not(:checked) + .nav-links {
+    height: 0px; }
+  .nav > #nav-check:checked + .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto; } }
+
+.blue_canvas {
+  background: #3498db;
+  color: #fff; }
+
+.red_canvas {
+  background: #c0392b;
+  color: #fff; }
+
+.green_canvas {
+  background: #27ae60;
+  color: #fff; }
+
+.orange_canvas {
+  background: #f39c12;
+  color: #fff; }
+
+.canvas div[class^='col-lg'], .canvas div[class*=' col-lg'] {
+  padding: 0px; }
 
 .canvas .drop-area {
-  margin: -1px;
-  border: 3px solid #000;
-  width: 100%; }
+  border-bottom: 1px solid #000; }
+  .canvas .drop-area .title {
+    font-weight: bold;
+    margin: 0;
+    padding: 15px;
+    border-bottom: 1px solid #000; }
+  .canvas .drop-area .content {
+    padding: 10px; }
+  .canvas .drop-area .card {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.1em;
+    background: #ffc;
+    color: #000;
+    margin: 10px;
+    padding: 0px 5px;
+    max-width: 250px;
+    display: inline-block;
+    -moz-box-shadow: 5px 5px 7px #212121;
+    -webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+    box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+    -moz-transition: -moz-transform .15s linear;
+    -o-transition: -o-transform .15s linear;
+    -webkit-transition: -webkit-transform .15s linear;
+    -webkit-transform: rotate(-6deg);
+    -o-transform: rotate(-6deg);
+    -moz-transform: rotate(-6deg); }
+  .canvas .drop-area .card:nth-child(even) {
+    -o-transform: rotate(4deg);
+    -webkit-transform: rotate(4deg);
+    -moz-transform: rotate(4deg); }
+
+@media screen and (min-width: 900px) {
+  .canvas {
+    height: 100%;
+    text-align: center;
+    border: 1px solid #000;
+    margin: 1px; }
+    .canvas .top_row {
+      height: 65%;
+      border-bottom: 1px solid #000; }
+    .canvas .bottom_row {
+      height: 35%; }
+    .canvas .default_row {
+      height: 50%; }
+    .canvas div[class^='col-lg'], .canvas div[class*=' col-lg'] {
+      padding: 0px; }
+    .canvas .full-height {
+      height: 100%;
+      overflow: auto; }
+    .canvas .half-height {
+      height: 100%;
+      overflow: auto; }
+    .canvas .drop-area {
+      border-left: 1px solid #000;
+      border-bottom: 1px solid #000; }
+      .canvas .drop-area .title {
+        font-weight: bold;
+        margin: 0;
+        padding: 15px;
+        border-bottom: 1px solid #000; }
+      .canvas .drop-area .content {
+        padding: 10px; }
+      .canvas .drop-area .card {
+        font-family: 'Indie Flower', cursive;
+        font-size: 1.1em;
+        background: #ffc;
+        color: #000;
+        margin: 10px;
+        padding: 0px 5px;
+        max-width: 250px;
+        display: inline-block;
+        -moz-box-shadow: 5px 5px 7px #212121;
+        -webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+        box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+        -moz-transition: -moz-transform .15s linear;
+        -o-transition: -o-transform .15s linear;
+        -webkit-transition: -webkit-transform .15s linear;
+        -webkit-transform: rotate(-6deg);
+        -o-transform: rotate(-6deg);
+        -moz-transform: rotate(-6deg); }
+      .canvas .drop-area .card:nth-child(even) {
+        -o-transform: rotate(4deg);
+        -webkit-transform: rotate(4deg);
+        -moz-transform: rotate(4deg); } }

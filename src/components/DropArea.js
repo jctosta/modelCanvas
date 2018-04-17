@@ -1,21 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button } from 'reactstrap';
+
+
 
 const DropArea = props => {
 
-    const cardList = props.source.cards.map((card) => 
-        <Card>
-            <CardBody>
-                <CardText>{card.label}</CardText>
-            </CardBody>
-        </Card>
+    const cardList = props.source.cards.map((card, index) => 
+        <div key={index} className="card">
+            <p>{card.label}</p>
+        </div>
     );
 
     return (
-        <div className={props.className + " drop-area"}>
-            <div className="title">{props.source.title}</div>
+        <div className={`${props.className} drop-area`}>
+            <p className={`${props.source.color} title`}>{props.source.title} {props.icon}</p>
             <div className="content">
                 {cardList}
             </div>

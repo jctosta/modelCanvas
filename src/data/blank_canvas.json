@@ -1,0 +1,13 @@
+{
+    "canvas": {
+        "parcerias_principais": { "title": "Parcerias Principais", "color": "blue_canvas", "cards": [] },
+        "atividades_principais": { "title": "Atividades Principais", "color": "blue_canvas", "cards": [] },
+        "recursos_principais": { "title": "Recursos Principais", "color": "blue_canvas", "cards": [] },
+        "proposta_de_valor": { "title": "Proposta de Valor", "color": "red_canvas", "cards": [] },
+        "relacionamento_com_clientes": { "title": "Relacionamento com Clientes", "color": "green_canvas", "cards": [] },
+        "canais": { "title": "Canais", "color": "green_canvas", "cards": [] },
+        "segmento_de_clientes": { "title": "Segmento de Clientes", "color": "green_canvas", "cards": [] },
+        "estrutura_de_custos": { "title": "Estrutura de Custos", "color": "orange_canvas", "cards": [] },
+        "fontes_de_receita": { "title": "Fontes de Receita", "color": "orange_canvas", "cards": [] }
+    }
+}
