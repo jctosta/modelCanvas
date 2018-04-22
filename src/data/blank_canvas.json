@@ -9,5 +9,92 @@
         "segmento_de_clientes": { "title": "Segmento de Clientes", "color": "green_canvas", "cards": [] },
         "estrutura_de_custos": { "title": "Estrutura de Custos", "color": "orange_canvas", "cards": [] },
         "fontes_de_receita": { "title": "Fontes de Receita", "color": "orange_canvas", "cards": [] }
+    },
+    "canvas3": {
+        "childs": [
+            {
+                "type": "row",
+                "childs": [
+                    {
+                        "type": "column",
+                        "childs": [
+                            { "type": "row" },
+                            { "type": "column" },
+                            { "type": "content" }
+                        ]
+                    },
+                    {
+                        "type": "row"
+                    },
+                    {
+                        "type": "content"
+                    }
+                ]
+            },
+            {
+                "type": "column",
+                "childs": [
+                    {
+                        "type": "column"
+                    },
+                    {
+                        "type": "row"
+                    },
+                    {
+                        "type": "content"
+                    }
+                ]
+            },
+            {
+                "type": "content"
+            }
+        ]
+    },
+    "canvas2": {
+        "childs": [
+            {
+                "type": "row",
+                "childs": [
+                    {
+                        "type": "column",
+                        "childs": [
+                            {
+                                "type": "content"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "column",
+                        "childs": [
+                            {
+                                "type": "row",
+                                "childs": [
+                                    {
+                                        "type": "content"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "row",
+                                "child": [
+                                    {
+                                        "type": "content"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "column",
+                        "childs": [
+                            {
+                                "type": "content"
+                            }
+                        ]
+                    }
+                ] 
+            }
+        ]
+        
     }
 }

@@ -1,3 +1,46 @@
+// Variables
+// Basic Variables
+$primary-color: #2c3e50;
+$secondary-color: #ecf0f1;
+$default-font: 'Titillium Web', sans-serif;
+// Size Variables
+$full: 100%;
+$half: $full / 2;
+$one-third: $full / 3;
+$two-thirds: $one-third * 2;
+$split-by-five: $full / 5;
+$split-by-four: $full / 4;
+$split-by-six: $full / 6;
+$split-by-twelve: $full / 12;
+
+// Colors Mixins
+$blue-canvas-background: #B1CFDD;
+$blue-canvas-foreground: #fff;
+
+$green-canvas-background: #00CCB4;
+$green-canvas-foreground: #fff;
+
+$red-canvas-background: #F85656;
+$red-canvas-foreground: #fff;
+
+$orange-canvas-background: #FFB347;
+$orange-canvas-foreground: #fff;
+
+
+
+
+// Mixins
+
+// Workaround for border collapse on Div's
+@mixin border($size, $color) {
+  box-shadow: 
+    $size 0 0 0 $color, 
+    0 $size 0 0 $color, 
+    $size $size 0 0 $color,   /* Just to fix the corner */
+    $size 0 0 0 $color inset, 
+    0 $size 0 0 $color inset;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,255 +48,394 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: $default-font;
   height: 100vh;
+  background: #E4E4E3;
+  //background: $primary-color;
 }
 
 @page {
   size: A4 landscape;
 }
 
+
+
 #root {
   height: 100%;
   section {
     height: 100%;
+    width: 100%;
+    //margin: 5% auto;
     //padding: 20px;
+  }
+}
+
+.canvas {
+  width: $full;
+  height: $full;
+  // @include border(1px, #959595);
+  
+  //background-color: #E4E4E3;
+
+  // -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.03);
+  //       -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.03);
+  //       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.03);
+
+  .canvas-row {
+    width: $full;
+    height: $half;
+    //@include border(1px, #888);
+    padding-bottom: 20px;
+  }
+
+  .full-height {
+    height: $full;
+  }
+  .half-height {
+    height: $half;
+  }
+  .one-third-height {
+    height: $one-third;
+  }
+  .two-third-height {
+    height: $two-thirds;
+  }
+
+  .canvas-column {
+    width: $split-by-five;
+    height: $full;
+    //@include border(1px, rgba(0, 0, 0, 0.2));
+    float: left;
+  }
+
+  .full-width {
+    width: $full;
+  }
+  .half-width {
+    width: $half;
+  }
+  .split-by-5-width {
+    width: $split-by-five;
+  }
+  .split-by-3-width {
+    width: $one-third;
+  }
+
+  .canvas-content {
+
+    /* board-background: */
+    background: #FFFFFF;
+    box-shadow: 1px 1px 5px 5px rgba(0,0,0,0.02);
+    border-radius: 30px;
+    margin: 10px;
+    padding: 10px;
+    height: 100%;
+
+    .cards {
+      overflow:auto;
+      width: 100%;
+      height: 100%;
+      list-style: none;
+      padding: 0;
+      .canvas-card {
+        /* Rectangle 3: */
+        background: #B1CFDD;
+        border-radius: 30px;
+        /* Loja de Noivas: */
+        font-family: Quicksand;
+        font-size: 16px;
+        color: #FFFFFF;
+        text-align: center;
+        margin: 5px 5px;
+        padding: 7px;
+        display: inline-block;
+        /* Rectangle 3: */
+        box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.15);
+        //line-height: 50px;
+      }
+      .canvas-card::after {
+        content: " x";
+      }
+      .canvas-card:hover {
+        background: #ccc;
+      }
+      .canvas-card:active {
+        background: #000;
+      }
+    }
+    .title {
+
+      /* Parcerias Principais: */
+      font-family: Quicksand-Bold;
+      font-size: 16px;
+      color: #9B9B9B;
+      text-align: left;
+      padding-left: 15px;
+
+      //line-height: 40px;
+      //@include border(1px, #888);
+      //font-family: 'Quicksand', sans-serif;
+    }
+    
+    
+
+    
+  }
+
+  .blue-canvas .cards .canvas-card {
+    background: $blue-canvas-background;
+    color: $blue-canvas-foreground;
+  }
+
+  .red-canvas .cards .canvas-card {
+    background: $red-canvas-background;
+    color: $red-canvas-foreground;
+  }
+
+  .green-canvas .cards .canvas-card {
+    background: $green-canvas-background;
+    color: $green-canvas-foreground;
+  }
+
+  .orange-canvas .cards .canvas-card {
+    background: $orange-canvas-background;
+    color: $orange-canvas-foreground;
   }
 }
 
 // Navigation
 
-.nav {
-  height: 50px;
-  width: 100%;
-  background-color: #4d4d4d;
-  position: relative;
-}
+// .nav {
+//   height: 50px;
+//   width: 100%;
+//   background-color: #4d4d4d;
+//   position: relative;
+// }
 
-.nav > .nav-header {
-  display: inline;
-}
+// .nav > .nav-header {
+//   display: inline;
+// }
 
-.nav > .nav-header > .nav-title {
-  display: inline-block;
-  font-size: 22px;
-  color: #fff;
-  padding: 10px 10px 10px 10px;
-}
+// .nav > .nav-header > .nav-title {
+//   display: inline-block;
+//   font-size: 22px;
+//   color: #fff;
+//   padding: 10px 10px 10px 10px;
+// }
 
-.nav > .nav-btn {
-  display: none;
-}
+// .nav > .nav-btn {
+//   display: none;
+// }
 
-.nav > .nav-links {
-  display: inline;
-  float: right;
-  font-size: 18px;
-}
+// .nav > .nav-links {
+//   display: inline;
+//   float: right;
+//   font-size: 18px;
+// }
 
-.nav > .nav-links > a {
-  display: inline-block;
-  padding: 13px 10px 13px 10px;
-  text-decoration: none;
-  color: #efefef;
-}
+// .nav > .nav-links > a {
+//   display: inline-block;
+//   padding: 13px 10px 13px 10px;
+//   text-decoration: none;
+//   color: #efefef;
+// }
 
-.nav > .nav-links > a:hover {
-  background-color: rgba(0, 0, 0, 0.3);
-}
+// .nav > .nav-links > a:hover {
+//   background-color: rgba(0, 0, 0, 0.3);
+// }
 
-.nav > #nav-check {
-  display: none;
-}
+// .nav > #nav-check {
+//   display: none;
+// }
 
-@media (max-width:600px) {
-  .nav > .nav-btn {
-    display: inline-block;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-  }
-  .nav > .nav-btn > label {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    padding: 13px;
-  }
-  .nav > .nav-btn > label:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-  }
-  .nav > .nav-btn > label > span {
-    display: block;
-    width: 25px;
-    height: 10px;
-    border-top: 2px solid #eee;
-  }
-  .nav > .nav-links {
-    position: absolute;
-    display: block;
-    width: 100%;
-    background-color: #333;
-    height: 0px;
-    transition: all 0.3s ease-in;
-    overflow-y: hidden;
-    top: 50px;
-    left: 0px;
-  }
-  .nav > .nav-links > a {
-    display: block;
-    width: 100%;
-  }
-  .nav > #nav-check:not(:checked) + .nav-links {
-    height: 0px;
-  }
-  .nav > #nav-check:checked + .nav-links {
-    height: calc(100vh - 50px);
-    overflow-y: auto;
-  }
-}
+// @media (max-width:600px) {
+//   .nav > .nav-btn {
+//     display: inline-block;
+//     position: absolute;
+//     right: 0px;
+//     top: 0px;
+//   }
+//   .nav > .nav-btn > label {
+//     display: inline-block;
+//     width: 50px;
+//     height: 50px;
+//     padding: 13px;
+//   }
+//   .nav > .nav-btn > label:hover {
+//     background-color: rgba(0, 0, 0, 0.3);
+//   }
+//   .nav > .nav-btn > label > span {
+//     display: block;
+//     width: 25px;
+//     height: 10px;
+//     border-top: 2px solid #eee;
+//   }
+//   .nav > .nav-links {
+//     position: absolute;
+//     display: block;
+//     width: 100%;
+//     background-color: #333;
+//     height: 0px;
+//     transition: all 0.3s ease-in;
+//     overflow-y: hidden;
+//     top: 50px;
+//     left: 0px;
+//   }
+//   .nav > .nav-links > a {
+//     display: block;
+//     width: 100%;
+//   }
+//   .nav > #nav-check:not(:checked) + .nav-links {
+//     height: 0px;
+//   }
+//   .nav > #nav-check:checked + .nav-links {
+//     height: calc(100vh - 50px);
+//     overflow-y: auto;
+//   }
+// }
 
-// Colors
+// // Colors
 
-.blue_canvas {
-  background: #3498db;
-  color: #fff;
-}
+// .blue_canvas {
+//   background: #3498db;
+//   color: #fff;
+// }
 
-.red_canvas {
-  background: #c0392b;
-  color: #fff;
-}
+// .red_canvas {
+//   background: #c0392b;
+//   color: #fff;
+// }
 
-.green_canvas {
-  background: #27ae60;
-  color: #fff;
-}
+// .green_canvas {
+//   background: #27ae60;
+//   color: #fff;
+// }
 
-.orange_canvas {
-  background: #f39c12;
-  color: #fff;
-}
+// .orange_canvas {
+//   background: #f39c12;
+//   color: #fff;
+// }
 
-.canvas {
-  div[class^='col-lg'], div[class*=' col-lg']{
-    padding: 0px;
-  }
-  .drop-area {
-    // border: 1px solid #000;
-    //box-shadow: 0 0 0 3px #000;
-    // border: 1px solid #000;
-    border-bottom: 1px solid #000;
-    .title {
-      font-weight: bold;
-      margin: 0;
-      padding: 15px;
-      border-bottom: 1px solid #000;
-    }
-    .content {
-      padding: 10px;
-    }
-    .card {
-      font-family: 'Indie Flower', cursive;
-      font-size: 1.1em;
-      background:#ffc;
-      color:#000;
-      margin: 10px;
-      padding: 0px 5px;
-      max-width: 250px;
-      display: inline-block;
-      -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
-      -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
-      box-shadow: 5px 5px 7px rgba(33,33,33,.7);
-      -moz-transition:-moz-transform .15s linear;
-      -o-transition:-o-transform .15s linear;
-      -webkit-transition:-webkit-transform .15s linear;
-      -webkit-transform: rotate(-6deg);
-      -o-transform: rotate(-6deg);
-      -moz-transform:rotate(-6deg);
-    }
-    .card:nth-child(even) {
-      -o-transform:rotate(4deg);
-      -webkit-transform:rotate(4deg);
-      -moz-transform:rotate(4deg);
+// .canvas {
+//   div[class^='col-lg'], div[class*=' col-lg']{
+//     padding: 0px;
+//   }
+//   .drop-area {
+//     // border: 1px solid #000;
+//     //box-shadow: 0 0 0 3px #000;
+//     // border: 1px solid #000;
+//     border-bottom: 1px solid #000;
+//     .title {
+//       font-weight: bold;
+//       margin: 0;
+//       padding: 15px;
+//       border-bottom: 1px solid #000;
+//     }
+//     .content {
+//       padding: 10px;
+//     }
+//     .card {
+//       font-family: 'Indie Flower', cursive;
+//       font-size: 1.1em;
+//       background:#ffc;
+//       color:#000;
+//       margin: 10px;
+//       padding: 0px 5px;
+//       max-width: 250px;
+//       display: inline-block;
+//       -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+//       -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+//       box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+//       -moz-transition:-moz-transform .15s linear;
+//       -o-transition:-o-transform .15s linear;
+//       -webkit-transition:-webkit-transform .15s linear;
+//       -webkit-transform: rotate(-6deg);
+//       -o-transform: rotate(-6deg);
+//       -moz-transform:rotate(-6deg);
+//     }
+//     .card:nth-child(even) {
+//       -o-transform:rotate(4deg);
+//       -webkit-transform:rotate(4deg);
+//       -moz-transform:rotate(4deg);
       
-    }
-  }
-}
+//     }
+//   }
+// }
 
-@media screen and (min-width: 900px) {
-  .canvas {
-    height: 100%;
-    text-align: center;
-    border: 1px solid #000;
-    //box-shadow: 0 0 0 3px #000;
-    margin: 1px;
+// @media screen and (min-width: 900px) {
+//   .canvas {
+//     height: 100%;
+//     text-align: center;
+//     border: 1px solid #000;
+//     //box-shadow: 0 0 0 3px #000;
+//     margin: 1px;
   
-    .top_row {
-      height: 65%;
-      border-bottom: 1px solid #000;
-    }
+//     .top_row {
+//       height: 65%;
+//       border-bottom: 1px solid #000;
+//     }
   
-    .bottom_row {
-      height: 35%;
-    }
+//     .bottom_row {
+//       height: 35%;
+//     }
   
-    .default_row {
-      height: 50%;
-    }
+//     .default_row {
+//       height: 50%;
+//     }
   
-    div[class^='col-lg'], div[class*=' col-lg']{
-      padding: 0px;
-    }
+//     div[class^='col-lg'], div[class*=' col-lg']{
+//       padding: 0px;
+//     }
   
-    .full-height {
-      height: 100%;
-      overflow: auto;
-    }
-    .half-height {
-      height: 100%;
-      overflow: auto;
-    }
-    .drop-area {
-      // border: 1px solid #000;
-      //box-shadow: 0 0 0 3px #000;
-      // border: 1px solid #000;
-      border-left: 1px solid #000;
-      border-bottom: 1px solid #000;
-      .title {
-        font-weight: bold;
-        margin: 0;
-        padding: 15px;
-        border-bottom: 1px solid #000;
-      }
-      .content {
-        padding: 10px;
-      }
-      .card {
-        font-family: 'Indie Flower', cursive;
-        font-size: 1.1em;
-        background:#ffc;
-        color:#000;
-        margin: 10px;
-        padding: 0px 5px;
-        max-width: 250px;
-        display: inline-block;
-        -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
-        -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
-        box-shadow: 5px 5px 7px rgba(33,33,33,.7);
-        -moz-transition:-moz-transform .15s linear;
-        -o-transition:-o-transform .15s linear;
-        -webkit-transition:-webkit-transform .15s linear;
-        -webkit-transform: rotate(-6deg);
-        -o-transform: rotate(-6deg);
-        -moz-transform:rotate(-6deg);
-      }
-      .card:nth-child(even) {
-        -o-transform:rotate(4deg);
-        -webkit-transform:rotate(4deg);
-        -moz-transform:rotate(4deg);
+//     .full-height {
+//       height: 100%;
+//       overflow: auto;
+//     }
+//     .half-height {
+//       height: 100%;
+//       overflow: auto;
+//     }
+//     .drop-area {
+//       // border: 1px solid #000;
+//       //box-shadow: 0 0 0 3px #000;
+//       // border: 1px solid #000;
+//       border-left: 1px solid #000;
+//       border-bottom: 1px solid #000;
+//       .title {
+//         font-weight: bold;
+//         margin: 0;
+//         padding: 15px;
+//         border-bottom: 1px solid #000;
+//       }
+//       .content {
+//         padding: 10px;
+//       }
+//       .card {
+//         font-family: 'Indie Flower', cursive;
+//         font-size: 1.1em;
+//         background:#ffc;
+//         color:#000;
+//         margin: 10px;
+//         padding: 0px 5px;
+//         max-width: 250px;
+//         display: inline-block;
+//         -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+//         -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+//         box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+//         -moz-transition:-moz-transform .15s linear;
+//         -o-transition:-o-transform .15s linear;
+//         -webkit-transition:-webkit-transform .15s linear;
+//         -webkit-transform: rotate(-6deg);
+//         -o-transform: rotate(-6deg);
+//         -moz-transform:rotate(-6deg);
+//       }
+//       .card:nth-child(even) {
+//         -o-transform:rotate(4deg);
+//         -webkit-transform:rotate(4deg);
+//         -moz-transform:rotate(4deg);
         
-      }
-    }
-  }
-}
+//       }
+//     }
+//   }
+// }
 

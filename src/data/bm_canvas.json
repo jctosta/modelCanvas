@@ -1,0 +1,165 @@
+{
+    "id": 1,
+    "title": "Business Model Canvas",
+    "childs": [
+        {
+            "type": "row",
+            "size": "two-third-height",
+            "childs": [
+                {
+                    "type": "column",
+                    "size": "split-by-5-width",
+                    "childs": [
+                        {
+                            "id": 0,
+                            "type": "content",
+                            "title": "Parcerias Principais",
+                            "color": "blue-canvas"
+                        }
+                    ]
+                },
+                {
+                    "type": "column",
+                    "size": "split-by-5-width",
+                    "childs": [
+                        {
+                            "type": "row",
+                            "size": "half-height",
+                            "childs": [
+                                {
+                                    "id": 1,
+                                    "type": "content",
+                                    "title": "Atividades Principais",
+                                    "color": "blue-canvas"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "row",
+                            "size": "half-height",
+                            "childs": [
+                                {
+                                    "id": 2,
+                                    "type": "content",
+                                    "title": "Recursos Principais",
+                                    "color": "blue-canvas"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "column",
+                    "size": "split-by-5-width",
+                    "childs": [
+                        {
+                            "id": 3,
+                            "type": "content",
+                            "title": "Propostas de Valor",
+                            "color": "red-canvas"
+                        }
+                    ]
+                },
+                {
+                    "type": "column",
+                    "size": "split-by-5-width",
+                    "childs": [
+                        {
+                            "type": "row",
+                            "size": "half-height",
+                            "childs": [
+                                {
+                                    "id": 4,
+                                    "type": "content",
+                                    "title": "Relacionamento com Clientes",
+                                    "color": "green-canvas"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "row",
+                            "size": "half-height",
+                            "childs": [
+                                {
+                                    "id": 5,
+                                    "type": "content",
+                                    "title": "Canais",
+                                    "color": "green-canvas"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "column",
+                    "size": "split-by-5-width",
+                    "childs": [
+                        {
+                            "id": 6,
+                            "type": "content",
+                            "title": "Segmento de Clientes",
+                            "color": "green-canvas"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "row",
+            "size": "one-third-height",
+            "childs": [
+                {
+                    "type": "column",
+                    "size": "half-width",
+                    "childs": [
+                        {
+                            "id": 7,
+                            "type": "content",
+                            "title": "Estrutura de Custos",
+                            "color": "orange-canvas"
+                        }
+                    ]
+                },
+                {
+                    "type": "column",
+                    "size": "half-width",
+                    "childs": [
+                        {
+                            "id": 8,
+                            "type": "content",
+                            "title": "Fontes de Receita",
+                            "color": "orange-canvas"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "cards": [
+        { "parentId": 0, "id": 0, "label": "Loja de Noivas", "description": "" },
+        { "parentId": 0, "id": 1, "label": "Lojas de Aniversário", "description": "" },
+        { "parentId": 0, "id": 2, "label": "Animadores de Festa", "description": "" },
+        { "parentId": 0, "id": 3, "label": "Empresas de Entrega", "description": "" },
+        { "parentId": 1, "id": 4, "label": "Produção de Doces", "description": "" },
+        { "parentId": 1, "id": 5, "label": "Produção de Bem Casados", "description": "" },
+        { "parentId": 1, "id": 6, "label": "Definir Motivo da Decoração", "description": "" },
+        { "parentId": 2, "id": 7, "label": "Equipamentos", "description": "" },
+        { "parentId": 2, "id": 8, "label": "Equipe", "description": "" },
+        { "parentId": 3, "id": 9, "label": "Festas mais bonitas e divertidas", "description": "" },
+        { "parentId": 3, "id": 10, "label": "Festas inesquesíveis com estilo e requinte", "description": "" },
+        { "parentId": 4, "id": 11, "label": "Atendimento pessoal e degustação", "description": "" },
+        { "parentId": 5, "id": 12, "label": "Loja própria para noivas", "description": "" },
+        { "parentId": 5, "id": 13, "label": "Internet", "description": "" },
+        { "parentId": 5, "id": 14, "label": "Mídias sociais", "description": "" },
+        { "parentId": 6, "id": 15, "label": "Noivas", "description": "" },
+        { "parentId": 6, "id": 16, "label": "Aniversariantes", "description": "" },
+        { "parentId": 7, "id": 17, "label": "Enfeites", "description": "" },
+        { "parentId": 7, "id": 18, "label": "Materia Prima", "description": "" },
+        { "parentId": 7, "id": 19, "label": "Pessoal", "description": "" },
+        { "parentId": 7, "id": 20, "label": "Infraestrutura", "description": "" },
+        { "parentId": 7, "id": 21, "label": "Cerimonial de Casamento", "description": "" },
+        { "parentId": 8, "id": 22, "label": "Centro de Doces Comuns", "description": "" },
+        { "parentId": 8, "id": 23, "label": "Bandeja de Doces Decorados", "description": "" },
+        { "parentId": 8, "id": 24, "label": "Serviços Extras para Casamentos", "description": "" }
+    ]
+}

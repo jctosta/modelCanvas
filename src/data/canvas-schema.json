@@ -1,0 +1,89 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Canvas",
+    "description": "A single instance of canvas, sutiable to all kinds of needs.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "The unique identifier for a canvas",
+            "type": "integer"
+        },
+        "title": {
+            "description": "The title of canvas",
+            "type": "string"
+        },
+        "description": {
+            "description": "A simple description of canvas content",
+            "type": "string"
+        },
+        "childs": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/child" }
+        }
+    },
+    "required": [ "id", "title" ],
+    "definitions": {
+        "child": {
+            "type": "object",
+            "properties": {
+                "type": { "type": "string" },
+                "childs": { 
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "anyOf": [
+                            { "$ref": "#/definitions/row" },
+                            { "$ref": "#/definitions/column" },
+                            { "$ref": "#/definitions/content" }
+                        ]
+                    }
+                    
+                }
+            }
+        },
+        "row": {
+            "type": "object",
+            "properties": {
+                "type": { "type": "string" },
+                "size": { "type": "string" },
+                "childs": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/child" }
+                }
+            }
+        },
+        "column": {
+            "type": "object",
+            "properties": {
+                "type": { "type": "string" },
+                "size": { "type": "string" },
+                "childs": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/child" }
+                }
+            }
+        },
+        "card": {
+            "type": "object",
+            "properties": {
+                "id": { "type": "integer" },
+                "title": { "type": "string" },
+                "description": { "type": "string" }
+            },
+            "required": ["id", "title"]
+        },
+        "content": {
+            "type": "object",
+            "properties": {
+                "id": { "type": "integer" },
+                "title": { "type": "string" },
+                "type": { "type": "string" },
+                "cards": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/card" }
+                }
+            },
+            "required": ["id", "title"]
+        }
+    }
+}
