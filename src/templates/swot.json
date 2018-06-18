@@ -11,21 +11,21 @@
       "description": "- What are your strengths?"
     },
     {
-      "id": 0,
+      "id": 1,
       "title": "Weaknesses",
-      "color": "blue-canvas",
+      "color": "green-canvas",
       "description": "- What are your weaknesses or limitations?"
     },
     {
-      "id": 0,
+      "id": 2,
       "title": "Opportunities",
-      "color": "blue-canvas",
+      "color": "red-canvas",
       "description": "- What are your opportunities?"
     },
     {
-      "id": 0,
+      "id": 3,
       "title": "Threats",
-      "color": "blue-canvas",
+      "color": "orange-canvas",
       "description": "- What are your threats?"
     }
   ],

@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 const Home = props => (
   <div className="container" style={{ paddingTop: '100px' }}>
     <div className="jumbotron mt-0 py-1 text-center border">
-      <h1>
-        <object data={`${process.env.PUBLIC_URL}/images/LogoModelCanvasVertical.svg`} type="image/svg+xml" style={{ maxHeight: '300px', height: '100%', width: '100%' }}>
-          <img src={`${process.env.PUBLIC_URL}/images/LogoModelCanvasVertical.svg`} alt={props.title} style={{ maxHeight: '300px', height: '100%', width: '100%' }} />
-        </object>
-      </h1>
+      <h1><img src={`${process.env.PUBLIC_URL}/images/LogoModelCanvasVertical.svg`} alt={props.title} style={{ maxHeight: '300px', height: '100%', width: '100%' }} /></h1>
       <p className="lead">A business canvas application, suitable for all kinds of need.</p>
       <hr className="my-4 d-none d-sm-block" />
       {/* <p className="d-none d-sm-block">The following canvas types are natively available, with support to many more to come...</p>
