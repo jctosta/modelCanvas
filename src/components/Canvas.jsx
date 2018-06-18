@@ -42,11 +42,28 @@ const Canvas = (props) => {
     </AppContext.Consumer>
   );
 
-  const buildCanvas = source => source.containers.map(buildContainers);
+  const buildCanvas = (source) => {
+    let canvasSplit = 3;
+    if (source.type === 'swot') {
+      canvasSplit = 2;
+    }
+    const containers = [];
+    let idx = 0;
+    while (idx < source.containers.length) {
+      if (idx % canvasSplit === 0) {
+        containers.push(<div className="w-100" />);
+      }
+      containers.push(buildContainers(source.containers[idx], idx));
+      idx += 1;
+    }
+    return containers;
+  };
+
+  // const buildCanvas = source => source.containers.map(buildContainers);
 
   return (
     <div className="container-fluid px-2 h-100" style={{ paddingTop: '0' }}>
-      <div className="card-columns mx-auto">
+      <div className="row">
         {(buildCanvas(props.source))}
       </div>
     </div>

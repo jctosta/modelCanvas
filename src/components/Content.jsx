@@ -36,26 +36,25 @@ class Content extends Component {
 
   render() {
     return (
-      <div className={`${this.props.color} card mt-1`}>
-        {/* <div className="card-header">
-          <h5 className="card-title mb-0">{this.props.title}</h5>
-        </div> */}
-        <div className="card-body px-3 py-3" style={{ overflow: 'auto' }}>
-          <h4 className="card-title">{this.props.title}</h4>
-          <h6 className="card-subtitle mb-2 text-muted">{this.props.description}</h6>
-          {/* <p className="small text-muted">{this.props.description}</p> */}
-          {this.props.children}
-          {
-            this.state.isVisible ?
-              <NewCard
-                parentId={this.props.parentId}
-                cancelAction={this.hideForm}
-                addCard={this.props.addCard}
-              /> : <br />
-          }
-        </div>
-        <div className="text-right">
-          <button className="btn btn-link" onClick={this.showForm}>Add Card...</button>
+      <div className="col-md">
+        <div className={`${this.props.color} card my-1 h-95 py-1`} style={{ paddingBottom: '10px' }}>
+          <div className="card-body px-3 py-3" style={{ overflow: 'auto' }}>
+            <h4 className="card-title">{this.props.title}</h4>
+            <h6 className="card-subtitle mb-2 text-muted">{this.props.description}</h6>
+            {/* <p className="small text-muted">{this.props.description}</p> */}
+            {this.props.children}
+            {
+              this.state.isVisible ?
+                <NewCard
+                  parentId={this.props.parentId}
+                  cancelAction={this.hideForm}
+                  addCard={this.props.addCard}
+                /> : <br />
+            }
+          </div>
+          <div className="text-right">
+            <button className="btn btn-link" onClick={this.showForm}>Add Card...</button>
+          </div>
         </div>
       </div>
     );

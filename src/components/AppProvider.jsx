@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import nanoid from 'nanoid';
 import AppContext from './AppContext';
-//import blankCanvas from '../data/blank_canvas.json';
 
 import leanCanvas from '../templates/lean.json';
 import businessCanvas from '../templates/business.json';
@@ -11,7 +10,7 @@ import blankCanvas from '../templates/blank.json';
 
 class AppProvider extends Component {
   static loadStorage() {
-    let cachedData = JSON.parse(sessionStorage.getItem('canvas'));
+    let cachedData = JSON.parse(localStorage.getItem('canvas'));
     if (!cachedData) {
       cachedData = {
         title: 'Blank Canvas',
@@ -20,13 +19,13 @@ class AppProvider extends Component {
         cards: [],
         isEmpty: true,
       };
-      sessionStorage.setItem('canvas', JSON.stringify(cachedData));
+      localStorage.setItem('canvas', JSON.stringify(cachedData));
     }
     return cachedData;
   }
 
   static isStorageEmpty() {
-    const cachedData = JSON.parse(sessionStorage.getItem('canvas'));
+    const cachedData = JSON.parse(localStorage.getItem('canvas'));
     if (cachedData) {
       return true;
     }
@@ -48,6 +47,7 @@ class AppProvider extends Component {
       },
       alertMessage: {},
       showAlertMessage: false,
+      canvasModified: false,
       getAppName: this.getAppName.bind(this),
       addCard: this.addCard.bind(this),
       updateCanvasTitle: this.updateCanvasTitle.bind(this),
@@ -59,6 +59,9 @@ class AppProvider extends Component {
       createNewCanvas: this.createNewCanvas.bind(this),
       dismissAlertMessage: this.dismissAlertMessage.bind(this),
       displayAlertMessage: this.displayAlertMessage.bind(this),
+      isStorageEmpty: AppProvider.isStorageEmpty.bind(this),
+      toggleModified: this.toggleModified.bind(this),
+      cleanStorage: this.cleanStorage.bind(this),
     };
   }
 
@@ -80,9 +83,14 @@ class AppProvider extends Component {
     }
   }
 
-
   getAppName() {
     return this.state.appName;
+  }
+
+  toggleModified() {
+    this.setState({
+      canvasModified: true,
+    });
   }
 
   displayAlertMessage(message, severity) {
@@ -127,7 +135,7 @@ class AppProvider extends Component {
         });
         break;
     }
-    this.state.updateStorage();
+    this.toggleModified();
   }
 
   addCard(parentId, label, color) {
@@ -145,7 +153,7 @@ class AppProvider extends Component {
       canvas: newCanvas,
     });
     // Persisting data on storage
-    this.state.updateStorage();
+    this.toggleModified();
     this.state.displayAlertMessage('Card successfully created.', 'success');
   }
 
@@ -154,14 +162,14 @@ class AppProvider extends Component {
     this.setState({
       canvas: newCanvas,
     });
-    this.state.updateStorage();
+    this.toggleModified();
   }
 
   loadModel(canvas) {
     this.setState({
       canvas,
     });
-    this.state.updateStorage();
+    this.toggleModified();
   }
 
   exportModel() {
@@ -187,12 +195,22 @@ class AppProvider extends Component {
     this.setState({
       canvas: newCanvas,
     });
-    this.state.updateStorage();
+    this.toggleModified();
     this.state.displayAlertMessage('Card successfully updated.', 'success');
   }
 
   updateStorage() {
-    sessionStorage.setItem('canvas', JSON.stringify(this.state.canvas));
+    localStorage.setItem('canvas', JSON.stringify(this.state.canvas));
+    this.setState({
+      canvasModified: false,
+    });
+    this.state.displayAlertMessage('Storage successfully updated.', 'success');
+  }
+
+  cleanStorage() {
+    localStorage.clear();
+    this.toggleModified();
+    this.state.displayAlertMessage('Storage successfully cleaned.', 'success');
   }
 
   removeCard(cardId) {
@@ -204,7 +222,7 @@ class AppProvider extends Component {
     this.setState({
       canvas: newCanvas,
     });
-    this.state.updateStorage();
+    this.toggleModified();
   }
 
   render() {

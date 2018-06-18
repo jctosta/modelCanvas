@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Canvas from './components/Canvas';
 import AppNav from './components/AppNav';
+import AppFooter from './components/AppFooter';
 import AppContext from './components/AppContext';
 import AppProvider from './components/AppProvider';
 import Home from './components/Home';
@@ -34,6 +35,9 @@ class App extends Component {
           </AppContext.Consumer>
           <AppContext.Consumer>
             {context => App.renderCanvas(context.getAppName(), context.canvas)}
+          </AppContext.Consumer>
+          <AppContext.Consumer>
+            { context => (<AppFooter canvasModified={context.canvasModified} updateStorage={context.updateStorage} cleanStorage={context.cleanStorage} />) }
           </AppContext.Consumer>
         </section>
       </AppProvider>
