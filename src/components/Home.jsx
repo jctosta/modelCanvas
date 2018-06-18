@@ -9,7 +9,7 @@ const Home = props => (
           <img src={`${process.env.PUBLIC_URL}/images/LogoModelCanvasVertical.svg`} alt={props.title} style={{ maxHeight: '300px', height: '100%', width: '100%' }} />
         </object>
       </h1>
-      <p className="lead">Create and view any type of canvas, on any device and with any connection.</p>
+      <p className="lead">A business canvas application, suitable for all kinds of need.</p>
       <hr className="my-4 d-none d-sm-block" />
       {/* <p className="d-none d-sm-block">The following canvas types are natively available, with support to many more to come...</p>
       <ul className="list-unstyle d-none d-sm-block">

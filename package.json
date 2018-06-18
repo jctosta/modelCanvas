@@ -2,6 +2,7 @@
   "name": "openbmg",
   "version": "0.1.0",
   "private": false,
+  "homepage": "https://jctosta.github.io/modelCanvas",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
@@ -9,6 +10,7 @@
     "ajv": "^6.5.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "gh-pages": "^1.2.0",
     "i18next": "^11.3.3",
     "jest": "^23.1.0",
     "jest-enzyme": "^6.0.1",
@@ -35,7 +37,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
