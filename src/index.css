@@ -4,7 +4,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Titillium Web", sans-serif;
+  font-family: "Titillium Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   height: 100vh;
   background: #E4E4E3; }
 
@@ -17,83 +17,161 @@ body {
     height: 100%;
     width: 100%; }
 
+.nav {
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99; }
+  .nav .nav-header {
+    background: #fff;
+    height: 100%;
+    padding: 0 20px;
+    /* Rectangle 2: */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.05); }
+    .nav .nav-header .nav-title {
+      display: inline-block;
+      line-height: 60px; }
+
+.footer {
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0; }
+
 .canvas {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  padding-top: 60px; }
   .canvas .canvas-row {
     width: 100%;
-    height: 50%;
-    padding-bottom: 20px; }
+    height: inherit; }
   .canvas .full-height {
-    height: 100%; }
+    height: auto; }
   .canvas .half-height {
-    height: 50%; }
+    height: auto; }
   .canvas .one-third-height {
-    height: 33.33333%; }
+    height: auto; }
   .canvas .two-third-height {
-    height: 66.66667%; }
+    height: auto; }
   .canvas .canvas-column {
     width: 20%;
-    height: 100%;
-    float: left; }
+    height: auto; }
   .canvas .full-width {
     width: 100%; }
   .canvas .half-width {
-    width: 50%; }
+    width: 100%; }
   .canvas .split-by-5-width {
-    width: 20%; }
+    width: 100%; }
   .canvas .split-by-3-width {
-    width: 33.33333%; }
+    width: 100%; }
+  @media (min-width: 900px) {
+    .canvas .canvas-row {
+      width: 100%;
+      height: 50%;
+      padding-bottom: 20px; }
+    .canvas .full-height {
+      height: 100%; }
+    .canvas .half-height {
+      height: 50%; }
+    .canvas .one-third-height {
+      height: 33.33333%; }
+    .canvas .two-third-height {
+      height: 66.66667%; }
+    .canvas .canvas-column {
+      width: 20%;
+      height: 100%;
+      float: left; }
+    .canvas .full-width {
+      width: 100%; }
+    .canvas .half-width {
+      width: 50%; }
+    .canvas .split-by-5-width {
+      width: 20%; }
+    .canvas .split-by-3-width {
+      width: 33.33333%; }
+    .canvas .canvas-card {
+      width: auto;
+      margin: 5px 5px;
+      display: inline-block; } }
   .canvas .canvas-content {
     /* board-background: */
     background: #FFFFFF;
     box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.02);
-    border-radius: 30px;
+    border-radius: 10px;
     margin: 10px;
-    padding: 10px;
+    display: flex;
+    flex-flow: column;
     height: 100%; }
-    .canvas .canvas-content .cards {
-      overflow: auto;
+    .canvas .canvas-content .header {
       width: 100%;
-      height: 100%;
-      list-style: none;
-      padding: 0; }
-      .canvas .canvas-content .cards .canvas-card {
-        /* Rectangle 3: */
-        background: #B1CFDD;
-        border-radius: 30px;
-        /* Loja de Noivas: */
-        font-family: Quicksand;
+      flex: 0 1 40px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 0 10px; }
+      .canvas .canvas-content .header .title {
+        font-family: "Titillium Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
         font-size: 16px;
-        color: #FFFFFF;
-        text-align: center;
-        margin: 5px 5px;
-        padding: 7px;
-        display: inline-block;
-        /* Rectangle 3: */
-        box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.15); }
-      .canvas .canvas-content .cards .canvas-card::after {
-        content: " x"; }
-      .canvas .canvas-content .cards .canvas-card:hover {
-        background: #ccc; }
-      .canvas .canvas-content .cards .canvas-card:active {
-        background: #000; }
-    .canvas .canvas-content .title {
-      /* Parcerias Principais: */
-      font-family: Quicksand-Bold;
-      font-size: 16px;
-      color: #9B9B9B;
-      text-align: left;
-      padding-left: 15px; }
-  .canvas .blue-canvas .cards .canvas-card {
+        color: #393939;
+        text-align: left;
+        line-height: 40px;
+        width: 70%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        float: left; }
+      .canvas .canvas-content .header .buttons {
+        line-height: 40px;
+        width: 30%;
+        float: right;
+        text-align: right; }
+        .canvas .canvas-content .header .buttons button {
+          border: none;
+          font-size: 1.1em;
+          color: #393939; }
+    .canvas .canvas-content .body {
+      padding: 10px;
+      flex: 1 1 auto;
+      overflow: auto; }
+      .canvas .canvas-content .body .cards {
+        overflow: auto;
+        width: 100%;
+        height: 100%;
+        list-style: none;
+        padding: 0;
+        margin: 0; }
+        .canvas .canvas-content .body .cards .canvas-card {
+          /* Rectangle 3: */
+          width: 100%;
+          background: #B1CFDD;
+          border-radius: 10px;
+          /* Loja de Noivas: */
+          font-family: "Titillium Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+          font-size: 16px;
+          color: #FFFFFF;
+          text-align: center;
+          margin: 5px 0;
+          padding: 7px;
+          display: inline-block;
+          /* Rectangle 3: */
+          box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.15); }
+        .canvas .canvas-content .body .cards .canvas-card::after {
+          content: " x"; }
+        .canvas .canvas-content .body .cards .canvas-card:hover {
+          background: #ccc; }
+        .canvas .canvas-content .body .cards .canvas-card:active {
+          background: #000; }
+  .canvas .blue-canvas .body .cards .canvas-card {
     background: #B1CFDD;
     color: #fff; }
-  .canvas .red-canvas .cards .canvas-card {
+  .canvas .red-canvas .body .cards .canvas-card {
     background: #F85656;
     color: #fff; }
-  .canvas .green-canvas .cards .canvas-card {
+  .canvas .green-canvas .body .cards .canvas-card {
     background: #00CCB4;
     color: #fff; }
-  .canvas .orange-canvas .cards .canvas-card {
+  .canvas .orange-canvas .body .cards .canvas-card {
     background: #FFB347;
     color: #fff; }

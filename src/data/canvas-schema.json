@@ -1,89 +1,119 @@
 {
-    "$schema": "http://json-schema.org/draft-06/schema#",
-    "title": "Canvas",
-    "description": "A single instance of canvas, sutiable to all kinds of needs.",
-    "type": "object",
-    "properties": {
-        "id": {
-            "description": "The unique identifier for a canvas",
-            "type": "integer"
-        },
-        "title": {
-            "description": "The title of canvas",
-            "type": "string"
-        },
-        "description": {
-            "description": "A simple description of canvas content",
-            "type": "string"
-        },
-        "childs": {
-            "type": "array",
-            "items": { "$ref": "#/definitions/child" }
-        }
+  "$id": "http://modelcanvas.app/canvas-schema.json",
+  "description": "A single instance of canvas, sutiable to all kinds of needs.",
+  "type": "object",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "id": {
+      "$id": "/properties/id",
+      "type": "integer",
+      "title": "The Id Schema ",
+      "default": 0,
+      "examples": [
+        1
+      ]
     },
-    "required": [ "id", "title" ],
-    "definitions": {
-        "child": {
-            "type": "object",
-            "properties": {
-                "type": { "type": "string" },
-                "childs": { 
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "anyOf": [
-                            { "$ref": "#/definitions/row" },
-                            { "$ref": "#/definitions/column" },
-                            { "$ref": "#/definitions/content" }
-                        ]
-                    }
-                    
-                }
-            }
-        },
-        "row": {
-            "type": "object",
-            "properties": {
-                "type": { "type": "string" },
-                "size": { "type": "string" },
-                "childs": {
-                    "type": "array",
-                    "items": { "$ref": "#/definitions/child" }
-                }
-            }
-        },
-        "column": {
-            "type": "object",
-            "properties": {
-                "type": { "type": "string" },
-                "size": { "type": "string" },
-                "childs": {
-                    "type": "array",
-                    "items": { "$ref": "#/definitions/child" }
-                }
-            }
-        },
-        "card": {
-            "type": "object",
-            "properties": {
-                "id": { "type": "integer" },
-                "title": { "type": "string" },
-                "description": { "type": "string" }
-            },
-            "required": ["id", "title"]
-        },
-        "content": {
-            "type": "object",
-            "properties": {
-                "id": { "type": "integer" },
-                "title": { "type": "string" },
-                "type": { "type": "string" },
-                "cards": {
-                    "type": "array",
-                    "items": { "$ref": "#/definitions/card" }
-                }
-            },
-            "required": ["id", "title"]
+    "title": {
+      "$id": "/properties/title",
+      "type": "string",
+      "title": "The Title Schema ",
+      "default": "",
+      "examples": [
+        "Business Model Canvas"
+      ]
+    },
+    "containers": {
+      "$id": "/properties/containers",
+      "type": "array",
+      "items": {
+        "$id": "/properties/containers/items",
+        "type": "object",
+        "properties": {
+          "id": {
+            "$id": "/properties/containers/items/properties/id",
+            "type": "integer",
+            "title": "The Id Schema ",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          },
+          "title": {
+            "$id": "/properties/containers/items/properties/title",
+            "type": "string",
+            "title": "The Title Schema ",
+            "default": "",
+            "examples": [
+              "Key Partners"
+            ]
+          },
+          "color": {
+            "$id": "/properties/containers/items/properties/color",
+            "type": "string",
+            "title": "The Color Schema ",
+            "default": "",
+            "examples": [
+              "blue-canvas"
+            ]
+          }
         }
+      }
+    },
+    "cards": {
+      "$id": "/properties/cards",
+      "type": "array",
+      "items": {
+        "$id": "/properties/cards/items",
+        "type": "object",
+        "properties": {
+          "parentId": {
+            "$id": "/properties/cards/items/properties/parentId",
+            "type": "integer",
+            "title": "The Parentid Schema ",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          },
+          "id": {
+            "$id": "/properties/cards/items/properties/id",
+            "type": "string",
+            "title": "The Id Schema ",
+            "default": "",
+            "examples": [
+              "xyzax1fgh"
+            ]
+          },
+          "label": {
+            "$id": "/properties/cards/items/properties/label",
+            "type": "string",
+            "title": "The Label Schema ",
+            "default": "",
+            "examples": [
+              "Example card"
+            ]
+          },
+          "description": {
+            "$id": "/properties/cards/items/properties/description",
+            "type": "string",
+            "title": "The Description Schema ",
+            "default": "",
+            "examples": [
+              ""
+            ]
+          },
+          "image": {
+            "$id": "/properties/cards/items/properties/image",
+            "type": "string",
+            "title": "The Image Schema ",
+            "default": "",
+            "examples": [
+              ""
+            ]
+          }
+        }
+      }
     }
+  }
 }

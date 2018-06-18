@@ -1,0 +1,65 @@
+{
+  "id": 1,
+  "title": "Blank Business Model Canvas",
+  "type": "business",
+  "isEmpty": false,
+  "containers": [
+      {
+          "id": 0,
+          "title": "Key Partners",
+          "color": "blue-canvas",
+          "description": "Who are your key partners?"
+      },
+      {
+          "id": 1,
+          "title": "Key Activities",
+          "color": "blue-canvas",
+          "description": "What are your key activities?"
+      },
+      {
+          "id": 2,
+          "title": "Key Resources",
+          "color": "blue-canvas",
+          "description": "What are your key resources?"
+      },
+      {
+          "id": 3,
+          "title": "Value Propositions",
+          "color": "red-canvas",
+          "description": "What are your value propositions?"
+      },
+      {
+          "id": 4,
+          "title": "Customer Relationships",
+          "color": "green-canvas",
+          "description": "Your customer relationships?"
+      },
+      {
+          "id": 5,
+          "title": "Channels",
+          "color": "green-canvas",
+          "description": "Channels"
+      },
+      {
+          "id": 6,
+          "title": "Customer Segments",
+          "color": "green-canvas",
+          "description": "Customer Segments"
+      },
+      {
+          "id": 7,
+          "title": "Cost Structure",
+          "color": "orange-canvas",
+          "description": "What about your cost structure?"
+      },
+      {
+          "id": 8,
+          "title": "Revenue Streams",
+          "color": "orange-canvas",
+          "description": "What are your revenue streams?"
+      }
+  ],
+  "cards": [
+      { "parentId": 0, "id": "0", "label": "Example card", "description": "", "image": "" }
+  ]
+}

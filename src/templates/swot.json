@@ -1,0 +1,33 @@
+{
+  "id": 1,
+  "title": "Blank Swot Canvas",
+  "type": "swot",
+  "isEmpty": false,
+  "containers": [
+    {
+      "id": 0,
+      "title": "Strengths",
+      "color": "blue-canvas",
+      "description": "- What are your strengths?"
+    },
+    {
+      "id": 0,
+      "title": "Weaknesses",
+      "color": "blue-canvas",
+      "description": "- What are your weaknesses or limitations?"
+    },
+    {
+      "id": 0,
+      "title": "Opportunities",
+      "color": "blue-canvas",
+      "description": "- What are your opportunities?"
+    },
+    {
+      "id": 0,
+      "title": "Threats",
+      "color": "blue-canvas",
+      "description": "- What are your threats?"
+    }
+  ],
+  "cards": []
+}

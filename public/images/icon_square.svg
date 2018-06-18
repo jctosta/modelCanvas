@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024px" height="1024px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_square</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon_square" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CanvasIconBlue" transform="translate(120.000000, 85.000000)">
+            <g id="CanvasIcon">
+                <rect id="Backholder" fill="#C0392B" x="372.218845" y="0" width="40.56231" height="78.7206704"></rect>
+                <polygon id="RightLeg" fill="#C0392B" points="285.391552 670.318436 333.111917 670.318436 205.197568 854 157.477204 854"></polygon>
+                <polygon id="LeftLeg" fill="#C0392B" transform="translate(541.160821, 762.159218) scale(-1, 1) translate(-541.160821, -762.159218) " points="581.257813 670.318436 628.978178 670.318436 501.06383 854 453.343465 854"></polygon>
+                <polygon id="CanvasPaper" fill="#2C3E50" points="32.7010958 143.128492 752.298904 143.128492 785 605.910615 0 605.910615"></polygon>
+                <rect id="BottomHolder" fill="#C0392B" x="73.9665653" y="617.837989" width="637.066869" height="40.5530726"></rect>
+                <rect id="TopHolder" fill="#C0392B" x="181.337386" y="90.6480447" width="422.325228" height="40.5530726"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
