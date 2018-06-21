@@ -10,7 +10,7 @@ import blankCanvas from '../templates/blank.json';
 
 class AppProvider extends Component {
   static loadStorage() {
-    let cachedData = JSON.parse(localStorage.getItem('canvas'));
+    let cachedData = window.localStorage.canvas;
     if (!cachedData) {
       cachedData = {
         title: 'Blank Canvas',
@@ -19,17 +19,19 @@ class AppProvider extends Component {
         cards: [],
         isEmpty: true,
       };
-      localStorage.setItem('canvas', JSON.stringify(cachedData));
+      window.localStorage.setItem('canvas', JSON.stringify(cachedData));
+    } else {
+      cachedData = JSON.parse(cachedData);
     }
     return cachedData;
   }
 
   static isStorageEmpty() {
-    const cachedData = JSON.parse(localStorage.getItem('canvas'));
+    const cachedData = window.localStorage.canvas;
     if (cachedData) {
-      return true;
+      return false;
     }
-    return false;
+    return true;
   }
 
   constructor(props) {
@@ -59,28 +61,29 @@ class AppProvider extends Component {
       createNewCanvas: this.createNewCanvas.bind(this),
       dismissAlertMessage: this.dismissAlertMessage.bind(this),
       displayAlertMessage: this.displayAlertMessage.bind(this),
-      isStorageEmpty: AppProvider.isStorageEmpty.bind(this),
       toggleModified: this.toggleModified.bind(this),
       cleanStorage: this.cleanStorage.bind(this),
     };
   }
 
   componentWillMount() {
-    if (AppProvider.isStorageEmpty) {
+    if (AppProvider.isStorageEmpty()) {
+      AppProvider.setCurrentPage('home');
+    } else {
       this.setState({
         canvas: AppProvider.loadStorage(),
       });
-    } else {
-      this.setState({
-        canvas: {
-          title: 'Blank Canvas',
-          type: '',
-          containers: [],
-          cards: [],
-          isEmpty: true,
-        },
-      });
+      AppProvider.setCurrentPage('canvas');
     }
+    // if (this.state.canvas.isEmpty) {
+    //   this.setCurrentPage('home');
+    // } else {
+    //   this.setCurrentPage('canvas');
+    // }
+  }
+
+  static setCurrentPage(pageName) {
+    window.location.hash = `#${pageName}`;
   }
 
   getAppName() {
@@ -135,6 +138,7 @@ class AppProvider extends Component {
         });
         break;
     }
+    AppProvider.setCurrentPage('canvas');
     this.toggleModified();
   }
 
@@ -170,6 +174,7 @@ class AppProvider extends Component {
       canvas,
     });
     this.toggleModified();
+    AppProvider.setCurrentPage('canvas');
   }
 
   exportModel() {

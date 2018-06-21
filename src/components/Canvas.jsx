@@ -51,7 +51,7 @@ const Canvas = (props) => {
     let idx = 0;
     while (idx < source.containers.length) {
       if (idx % canvasSplit === 0) {
-        containers.push(<div className="w-100" />);
+        containers.push(<div className="w-100" key={`sep-${idx}`} />);
       }
       containers.push(buildContainers(source.containers[idx], idx));
       idx += 1;
@@ -62,7 +62,7 @@ const Canvas = (props) => {
   // const buildCanvas = source => source.containers.map(buildContainers);
 
   return (
-    <div className="container-fluid px-2 h-100" style={{ paddingTop: '0' }}>
+    <div className="container-fluid h-100" style={{ paddingTop: '0', marginBottom: '60px' }}>
       <div className="row">
         {(buildCanvas(props.source))}
       </div>

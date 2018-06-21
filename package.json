@@ -5,6 +5,7 @@
   "homepage": "https://modelcanvas.app",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-regular": "^5.0.13",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/react-fontawesome": "0.0.18",
     "ajv": "^6.5.1",
@@ -36,8 +37,8 @@
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar src/style -o src/style",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/style --watch --recursive",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },

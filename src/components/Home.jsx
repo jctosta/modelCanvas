@@ -22,9 +22,9 @@ const Home = props => (
       <button className="btn btn-primary btn-lg">Learn more</button>
       <br />
       <br />
-      <div className="text-right">
+      {/* <div className="text-right">
         <p>Photo by <a href="https://unsplash.com/photos/u5XiXcOq2Tw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">rawpixel</a> on <a href="https://unsplash.com/search/photos/business?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
-      </div>
+      </div> */}
     </div>
   </div>
 

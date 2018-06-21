@@ -1,34 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Navbar,
-  Collapse,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-  Form,
-  Label,
-  Input,
-  FormGroup,
-  Alert,
-} from 'reactstrap';
+import Navbar from 'reactstrap/lib/Navbar';
+import Collapse from 'reactstrap/lib/Collapse';
+import NavbarToggler from 'reactstrap/lib/NavbarToggler';
+import NavbarBrand from 'reactstrap/lib/NavbarBrand';
+import Nav from 'reactstrap/lib/Nav';
+import NavItem from 'reactstrap/lib/NavItem';
+import NavLink from 'reactstrap/lib/NavLink';
+import UncontrolledDropdown from 'reactstrap/lib/UncontrolledDropdown';
+import DropdownToggle from 'reactstrap/lib/DropdownToggle';
+import DropdownMenu from 'reactstrap/lib/DropdownMenu';
+import DropdownItem from 'reactstrap/lib/DropdownItem';
+import Modal from 'reactstrap/lib/Modal';
+import ModalHeader from 'reactstrap/lib/ModalHeader';
+import ModalBody from 'reactstrap/lib/ModalBody';
+import ModalFooter from 'reactstrap/lib/ModalFooter';
+import Button from 'reactstrap/lib/Button';
+import Form from 'reactstrap/lib/Form';
+import Label from 'reactstrap/lib/Label';
+import Input from 'reactstrap/lib/Input';
+import FormGroup from 'reactstrap/lib/FormGroup';
+import Alert from 'reactstrap/lib/Alert';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlus from '@fortawesome/fontawesome-free-solid/faPlus';
 import faUpload from '@fortawesome/fontawesome-free-solid/faUpload';
 import faDownload from '@fortawesome/fontawesome-free-solid/faDownload';
-import Ajv from 'ajv';
-import canvasSchema from '../data/canvas-schema.json';
+// import Ajv from 'ajv';
+// import canvasSchema from '../data/canvas-schema.json';
 
 class AppNav extends React.Component {
   static handleFile(e) {
@@ -48,42 +46,46 @@ class AppNav extends React.Component {
   constructor(props) {
     super(props);
 
-    this.ajv = new Ajv();
-    this.validate = this.ajv.compile(canvasSchema);
+    // Navbar toggler
+    this.navbarToggle = this.navbarToggle.bind(this);
 
-    this.toggle = this.toggle.bind(this);
-    this.openModal = this.openModal.bind(this);
+    // Modal toggler
+    this.openImportModal = this.openImportModal.bind(this);
     this.openExportModal = this.openExportModal.bind(this);
+    this.openNewCanvasModal = this.openNewCanvasModal.bind(this);
+    this.openHelpModal = this.openHelpModal.bind(this);
+
+    // Event handlers
     this.handleDrop = this.handleDrop.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleExportCanvas = this.handleExportCanvas.bind(this);
+    this.handleCreateCanvas = this.handleCreateCanvas.bind(this);
 
+    // Modal Renders
     this.renderImportFileModal = this.renderImportFileModal.bind(this);
     this.renderExportModal = this.renderExportModal.bind(this);
-
-    this.openNewCanvasModal = this.openNewCanvasModal.bind(this);
-    this.handleCreateCanvas = this.handleCreateCanvas.bind(this);
     this.renderNewCanvasModal = this.renderNewCanvasModal.bind(this);
-
+    this.renderHelpModal = this.renderHelpModal.bind(this);
 
     this.state = {
-      isOpen: false,
-      modal: false,
+      navbarIsOpen: false,
+      importModal: false,
       exportModal: false,
       newCanvasModal: false,
+      helpModal: false,
     };
   }
 
-  toggle() {
+  navbarToggle() {
     this.setState({
-      isOpen: !this.state.isOpen,
+      navbarIsOpen: !this.state.navbarIsOpen,
     });
   }
 
   // Modal Togglers
-  openModal() {
+  openImportModal() {
     this.setState({
-      modal: !this.state.modal,
+      importModal: !this.state.importModal,
     });
   }
 
@@ -99,6 +101,12 @@ class AppNav extends React.Component {
     });
   }
 
+  openHelpModal() {
+    this.setState({
+      helpModal: !this.state.helpModal,
+    });
+  }
+
   // Event Handlers
   handleChange(e) {
     // this.setState({ file: e.target.files[0] });
@@ -106,14 +114,16 @@ class AppNav extends React.Component {
     fetch(dataURL)
       .then(results => results.json())
       .then((data) => {
-        const valid = this.validate(data);
-        if (valid) {
-          this.props.loadModel(data);
-          this.openModal();
-        } else {
-          // @TODO: Replace with error appropriated error messages.
-          console.log(this.validate.errors);
-        }
+        this.props.loadModel(data);
+        this.openImportModal();
+        // const valid = this.validate(data);
+        // if (valid) {
+        //   this.props.loadModel(data);
+        //   this.openModal();
+        // } else {
+        //   // @TODO: Replace with error appropriated error messages.
+        //   console.log(this.validate.errors);
+        // }
       });
   }
 
@@ -129,7 +139,7 @@ class AppNav extends React.Component {
       .then(results => results.json())
       .then((data) => {
         this.props.loadModel(data);
-        this.openModal();
+        this.openImportModal();
       });
   }
 
@@ -158,12 +168,25 @@ class AppNav extends React.Component {
     this.openNewCanvasModal();
   }
 
-
+  renderHelpModal() {
+    return (
+      <Modal isOpen={this.state.helpModal} toggle={this.openHelpModal}>
+        <ModalHeader toggle={this.openHelpModal}>Help</ModalHeader>
+        <ModalBody>
+          <h2>Help Topics</h2>
+          <p>Lorem ipsum dolor sit amet...</p>
+        </ModalBody>
+        <ModalFooter>
+          <Button size="sm" color="primary" onClick={this.openHelpModal}>Close</Button>
+        </ModalFooter>
+      </Modal>
+    );
+  }
   // Render Methods
   renderImportFileModal() {
     return (
-      <Modal isOpen={this.state.modal} toggle={this.openModal}>
-        <ModalHeader toggle={this.openModal}>Import Model</ModalHeader>
+      <Modal isOpen={this.state.importModal} toggle={this.openImportModal}>
+        <ModalHeader toggle={this.openImportModal}>Import Model</ModalHeader>
         <ModalBody>
           <p
             id="dropzone"
@@ -192,8 +215,8 @@ class AppNav extends React.Component {
           </form>
         </ModalBody>
         <ModalFooter>
-          <Button size="sm" color="primary" onClick={this.openModal}>Import</Button>
-          <Button size="sm" color="secondary" onClick={this.openModal}>Cancel</Button>
+          <Button size="sm" color="primary" onClick={this.openImportModal}>Import</Button>
+          <Button size="sm" color="secondary" onClick={this.openImportModal}>Cancel</Button>
         </ModalFooter>
       </Modal>
     );
@@ -250,29 +273,31 @@ class AppNav extends React.Component {
         { this.renderExportModal() }
         {/* Render New Canvas Modal Dialog */}
         { this.renderNewCanvasModal() }
+        {/* Render Help Modal Dialog */}
+        { this.renderHelpModal() }
 
         <Navbar color="light" light expand="md" fixed="top" className="border-bottom">
-          <NavbarBrand href="/"><img height="30px" src={`${process.env.PUBLIC_URL}/images/LogoModelCanvasApp.svg`} alt={this.props.name} /></NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+          <NavbarBrand href="#home"><img height="30px" src={`${process.env.PUBLIC_URL}/images/LogoModelCanvasApp.svg`} alt={this.props.name} /></NavbarBrand>
+          <NavbarToggler onClick={this.navbarToggle} />
+          <Collapse isOpen={this.state.navbarIsOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink><strong>{this.props.title}</strong></NavLink>
+                <NavLink href="#home"><strong>{this.props.title}</strong></NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#new" onClick={this.openNewCanvasModal} ><FontAwesomeIcon icon={faPlus} /> New Canvas...</NavLink>
+                <NavLink href="#" onClick={this.openNewCanvasModal} ><FontAwesomeIcon icon={faPlus} /> New Canvas...</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#open" onClick={this.openModal}><FontAwesomeIcon icon={faUpload} /> Import...</NavLink>
+                <NavLink href="#" onClick={this.openImportModal}><FontAwesomeIcon icon={faUpload} /> Import...</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#save" onClick={this.openExportModal}><FontAwesomeIcon icon={faDownload} /> Export...</NavLink>
+                <NavLink href="#" onClick={this.openExportModal}><FontAwesomeIcon icon={faDownload} /> Export...</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>Options</DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>Terms of Use</DropdownItem>
-                  <DropdownItem>Help</DropdownItem>
+                  <DropdownItem href="#" onClick={this.openHelpModal}>Help</DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>Contribute</DropdownItem>
                 </DropdownMenu>
