@@ -7,6 +7,8 @@ import faTrash from '@fortawesome/fontawesome-free-solid/faTrash';
 
 import { CirclePicker } from 'react-color';
 
+import i18n from '../i18n/i18n';
+
 class Card extends Component {
   constructor(props) {
     super(props);
@@ -47,11 +49,11 @@ class Card extends Component {
       return (
         <form className="form" onSubmit={this.processForm}>
           <div className="form-group">
-            <label htmlFor="newCard">Content: </label><br />
+            <label htmlFor="newCard">{i18n.t('canvas_new_card_content_label.label')}:</label><br />
             <textarea id="newCard" name="labelValue" rows="3" className="form-control" defaultValue={this.props.text} />
           </div>
           <div className="form-group">
-            <label htmlFor="colorSelector">Color: </label><br />
+            <label htmlFor="colorSelector">{i18n.t('canvas_new_card_color_label.label')}:</label><br />
             <CirclePicker
               color={this.state.color}
               colors={['#f1e9e7', '#e6fad7', '#fff7c9', '#f5cac3', '#c7deed', '#ffd1f2']}
@@ -59,14 +61,14 @@ class Card extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="newParentSelect">Move Card:</label><br />
+            <label htmlFor="newParentSelect">{i18n.t('canvas_edit_card_move_card_label.label')}:</label><br />
             <select className="form-control" name="select" id="newParentSelect" defaultValue={this.props.parentId}>
               {this.props.containers.map(c => <option value={c.id}>{c.title}</option>)}
             </select>
           </div>
           <div className="text-right">
-            <button className="btn btn-default" onClick={this.toggleEditForm}>Cancel</button>
-            <button className="btn btn-primary" type="submit">Save</button>
+            <button className="btn btn-default" onClick={this.toggleEditForm}>{i18n.t('canvas_new_card_cancel.label')}</button>
+            <button className="btn btn-primary" type="submit">{i18n.t('canvas_new_card_button.label')}</button>
           </div>
         </form>
       );

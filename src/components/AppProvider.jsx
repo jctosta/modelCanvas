@@ -7,6 +7,10 @@ import leanCanvas from '../templates/lean.json';
 import businessCanvas from '../templates/business.json';
 import swotCanvas from '../templates/swot.json';
 import blankCanvas from '../templates/blank.json';
+import leanCanvasPt from '../templates/lean.pt.json';
+import businessCanvasPt from '../templates/business.pt.json';
+import swotCanvasPt from '../templates/swot.pt.json';
+import blankCanvasPt from '../templates/blank.pt.json';
 
 class AppProvider extends Component {
   static loadStorage() {
@@ -47,6 +51,7 @@ class AppProvider extends Component {
         cards: [],
         isEmpty: true,
       },
+      language: 'pt',
       alertMessage: {},
       showAlertMessage: false,
       canvasModified: false,
@@ -116,26 +121,50 @@ class AppProvider extends Component {
   createNewCanvas(canvasType) {
     switch (canvasType) {
       case 'business':
-        this.setState({
-          canvas: businessCanvas,
-        });
+        if (this.state.language === 'pt') {
+          this.setState({
+            canvas: businessCanvasPt,
+          });
+        } else {
+          this.setState({
+            canvas: businessCanvas,
+          });
+        }
         break;
       case 'project':
         break;
       case 'lean':
-        this.setState({
-          canvas: leanCanvas,
-        });
+        if (this.state.language === 'pt') {
+          this.setState({
+            canvas: leanCanvasPt,
+          });
+        } else {
+          this.setState({
+            canvas: leanCanvas,
+          });
+        }
         break;
       case 'swot':
-        this.setState({
-          canvas: swotCanvas,
-        });
+        if (this.state.language === 'pt') {
+          this.setState({
+            canvas: swotCanvasPt,
+          });
+        } else {
+          this.setState({
+            canvas: swotCanvas,
+          });
+        }
         break;
       default:
-        this.setState({
-          canvas: blankCanvas,
-        });
+        if (this.state.language === 'pt') {
+          this.setState({
+            canvas: blankCanvasPt,
+          });
+        } else {
+          this.setState({
+            canvas: blankCanvas,
+          });
+        }
         break;
     }
     AppProvider.setCurrentPage('canvas');
@@ -161,10 +190,11 @@ class AppProvider extends Component {
     this.state.displayAlertMessage('Card successfully created.', 'success');
   }
 
-  updateCanvasTitle(newTitle) {
-    const newCanvas = Object.assign({ title: newTitle }, this.state.canvas);
+  updateCanvasTitle(title) {
+    const { canvas } = this.state;
+    canvas.title = title;
     this.setState({
-      canvas: newCanvas,
+      canvas,
     });
     this.toggleModified();
   }

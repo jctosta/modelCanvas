@@ -9,6 +9,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/react-fontawesome": "0.0.18",
     "ajv": "^6.5.1",
+    "bulma": "^0.7.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "gh-pages": "^1.2.0",
@@ -26,6 +27,7 @@
     "react-contenteditable": "^2.1.0",
     "react-dom": "^16.4.1",
     "react-i18next": "^7.7.0",
+    "react-loading-screen": "0.0.17",
     "react-scripts": "1.1.4",
     "react-test-renderer": "^16.4.1",
     "reactstrap": "^6.1.0"

@@ -39,6 +39,7 @@ class App extends Component {
                 loadModel={context.loadModel}
                 exportModel={context.exportModel}
                 title={context.canvas.title}
+                updateCanvasTitle={context.updateCanvasTitle}
                 createNewCanvas={context.createNewCanvas}
                 showAlertMessage={context.showAlertMessage}
                 alertMessage={context.alertMessage}

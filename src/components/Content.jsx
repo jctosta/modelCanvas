@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NewCard from './NewCard';
+import i18n from '../i18n/i18n';
 
 
 class Content extends Component {
@@ -53,7 +54,7 @@ class Content extends Component {
             }
           </div>
           <div className="text-right">
-            <button className="btn btn-link" onClick={this.showForm}>Add Card...</button>
+            <button className="btn btn-link" onClick={this.showForm}>{i18n.t('canvas_addcard_button.label')}</button>
           </div>
         </div>
       </div>

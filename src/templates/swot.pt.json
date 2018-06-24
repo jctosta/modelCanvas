@@ -1,0 +1,33 @@
+{
+  "id": 1,
+  "title": "Canvas Swot em Branco",
+  "type": "swot",
+  "isEmpty": false,
+  "containers": [
+    {
+      "id": 0,
+      "title": "Pontos Fortes",
+      "color": "blue-canvas",
+      "description": "Quais são seus pontos fortes?"
+    },
+    {
+      "id": 1,
+      "title": "Pontos Fracos",
+      "color": "green-canvas",
+      "description": "Quais são suas fraquezas ou limitações?"
+    },
+    {
+      "id": 2,
+      "title": "Oportunidades",
+      "color": "red-canvas",
+      "description": "Que oportunidades você enxerga?"
+    },
+    {
+      "id": 3,
+      "title": "Ameaças",
+      "color": "orange-canvas",
+      "description": "Quais são as ameaças?"
+    }
+  ],
+  "cards": []
+}

@@ -25,6 +25,11 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlus from '@fortawesome/fontawesome-free-solid/faPlus';
 import faUpload from '@fortawesome/fontawesome-free-solid/faUpload';
 import faDownload from '@fortawesome/fontawesome-free-solid/faDownload';
+import ContentEditable from 'react-contenteditable';
+import snakeCase from 'lodash/snakeCase';
+
+import i18n from '../i18n/i18n';
+
 // import Ajv from 'ajv';
 // import canvasSchema from '../data/canvas-schema.json';
 
@@ -60,6 +65,7 @@ class AppNav extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleExportCanvas = this.handleExportCanvas.bind(this);
     this.handleCreateCanvas = this.handleCreateCanvas.bind(this);
+    this.handleCanvasNameChange = this.handleCanvasNameChange.bind(this);
 
     // Modal Renders
     this.renderImportFileModal = this.renderImportFileModal.bind(this);
@@ -74,6 +80,11 @@ class AppNav extends React.Component {
       newCanvasModal: false,
       helpModal: false,
     };
+  }
+
+  handleCanvasNameChange(event) {
+    const title = event.target.value;
+    this.props.updateCanvasTitle(title);
   }
 
   navbarToggle() {
@@ -152,7 +163,7 @@ class AppNav extends React.Component {
 
     const anchor = document.createElement('a');
     anchor.setAttribute('href', dataURL);
-    anchor.setAttribute('download', 'canvas.json');
+    anchor.setAttribute('download', `${snakeCase(this.props.title)}.json`);
     anchor.click();
 
     this.openExportModal();
@@ -171,13 +182,12 @@ class AppNav extends React.Component {
   renderHelpModal() {
     return (
       <Modal isOpen={this.state.helpModal} toggle={this.openHelpModal}>
-        <ModalHeader toggle={this.openHelpModal}>Help</ModalHeader>
+        <ModalHeader toggle={this.openHelpModal}>{i18n.t('modal_help_title.label')}</ModalHeader>
         <ModalBody>
-          <h2>Help Topics</h2>
-          <p>Lorem ipsum dolor sit amet...</p>
+          <p>{i18n.t('modal_help_text.label')}</p>
         </ModalBody>
         <ModalFooter>
-          <Button size="sm" color="primary" onClick={this.openHelpModal}>Close</Button>
+          <Button size="sm" color="primary" onClick={this.openHelpModal}>{i18n.t('modal_button_close.label')}</Button>
         </ModalFooter>
       </Modal>
     );
@@ -186,7 +196,7 @@ class AppNav extends React.Component {
   renderImportFileModal() {
     return (
       <Modal isOpen={this.state.importModal} toggle={this.openImportModal}>
-        <ModalHeader toggle={this.openImportModal}>Import Model</ModalHeader>
+        <ModalHeader toggle={this.openImportModal}>{i18n.t('modal_import_title.label')}</ModalHeader>
         <ModalBody>
           <p
             id="dropzone"
@@ -194,12 +204,12 @@ class AppNav extends React.Component {
             onDragOver={AppNav.handleDragOver}
             onDrop={this.handleDrop}
           >
-            Drop your model here or select one in your computer using the button bellow.
+            {i18n.t('modal_import_dropzone.label')}
           </p>
           <form onSubmit={AppNav.handleFile}>
             <div className="input-group mb-3">
               <div className="input-group-prepend">
-                <span className="input-group-text">Import</span>
+                <span className="input-group-text">{i18n.t('modal_import_button.label')}</span>
               </div>
               <div className="custom-file">
                 <input
@@ -209,14 +219,14 @@ class AppNav extends React.Component {
                   id="customFile"
                   onChange={this.handleChange}
                 />
-                <Label for="customFile" className="custom-file-label">Choose file...</Label>
+                <Label for="customFile" className="custom-file-label">{i18n.t('modal_import_choose_file.label')}</Label>
               </div>
             </div>
           </form>
         </ModalBody>
         <ModalFooter>
-          <Button size="sm" color="primary" onClick={this.openImportModal}>Import</Button>
-          <Button size="sm" color="secondary" onClick={this.openImportModal}>Cancel</Button>
+          <Button size="sm" color="primary" onClick={this.openImportModal}>{i18n.t('modal_import_button.label')}</Button>
+          <Button size="sm" color="secondary" onClick={this.openImportModal}>{i18n.t('modal_button_close.label')}</Button>
         </ModalFooter>
       </Modal>
     );
@@ -225,13 +235,13 @@ class AppNav extends React.Component {
   renderExportModal() {
     return (
       <Modal isOpen={this.state.exportModal} toggle={this.openExportModal}>
-        <ModalHeader toggle={this.openExportModal}>Export Model</ModalHeader>
+        <ModalHeader toggle={this.openExportModal}>{i18n.t('modal_export_title.label')}</ModalHeader>
         <ModalBody>
-          <p>Press the Export button to get a json file from your canvas.</p>
+          <p>{i18n.t('modal_export_label.label')}</p>
         </ModalBody>
         <ModalFooter>
-          <Button size="sm" color="primary" onClick={this.handleExportCanvas}>Export</Button>
-          <Button size="sm" color="secondary" onClick={this.openExportModal}>Cancel</Button>
+          <Button size="sm" color="primary" onClick={this.handleExportCanvas}>{i18n.t('modal_export_button.label')}</Button>
+          <Button size="sm" color="secondary" onClick={this.openExportModal}>{i18n.t('modal_button_close.label')}</Button>
         </ModalFooter>
       </Modal>
     );
@@ -241,22 +251,22 @@ class AppNav extends React.Component {
     return (
       <Modal isOpen={this.state.newCanvasModal} toggle={this.openNewCanvasModal}>
         <Form onSubmit={this.handleCreateCanvas}>
-          <ModalHeader toggle={this.openNewCanvasModal}>Create New Canvas</ModalHeader>
+          <ModalHeader toggle={this.openNewCanvasModal}>{i18n.t('modal_newcanvas_title.label')}</ModalHeader>
           <ModalBody>
             <FormGroup>
-              <Label>Please select the desired canvas type:</Label>
+              <Label>{i18n.t('modal_newcanvas_label.label')}</Label>
               <Input type="select" name="select" id="newCanvasSelect">
-                <option value="business">Business Model Canvas</option>
-                <option value="project">Project Model Canvas</option>
-                <option value="lean">Lean Canvas</option>
-                <option value="swot">Swot Canvas</option>
-                <option value="blank">Blank Canvas</option>
+                <option value="business">{i18n.t('modal_newcanvas_business_type.label')}</option>
+                <option value="project">{i18n.t('modal_newcanvas_project_type.label')}</option>
+                <option value="lean">{i18n.t('modal_newcanvas_lean_type.label')}</option>
+                <option value="swot">{i18n.t('modal_newcanvas_swot_type.label')}</option>
+                <option value="blank">{i18n.t('modal_newcanvas_blank_type.label')}</option>
               </Input>
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button size="sm" color="primary" type="submit">Create</Button>
-            <Button size="sm" color="secondary" onClick={this.openNewCanvasModal}>Cancel</Button>
+            <Button size="sm" color="primary" type="submit">{i18n.t('modal_newcanvas_button.label')}</Button>
+            <Button size="sm" color="secondary" onClick={this.openNewCanvasModal}>{i18n.t('modal_button_close.label')}</Button>
           </ModalFooter>
         </Form>
       </Modal>
@@ -277,29 +287,29 @@ class AppNav extends React.Component {
         { this.renderHelpModal() }
 
         <Navbar color="light" light expand="md" fixed="top" className="border-bottom">
-          <NavbarBrand href="#home"><img height="30px" src={`${process.env.PUBLIC_URL}/images/LogoModelCanvasApp.svg`} alt={this.props.name} /></NavbarBrand>
-          <NavbarToggler onClick={this.navbarToggle} />
+          <NavbarBrand href="#home"><img height="28" src={`${process.env.PUBLIC_URL}/images/LogoModelCanvasApp.svg`} alt={this.props.name} /></NavbarBrand>
+          <NavbarToggler onClick={this.navbarToggle} aria-label="navbar toggler" />
           <Collapse isOpen={this.state.navbarIsOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="#home"><strong>{this.props.title}</strong></NavLink>
+                <NavLink href="#"><strong><ContentEditable html={this.props.title} onChange={this.handleCanvasNameChange} disabled={false} /></strong></NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#" onClick={this.openNewCanvasModal} ><FontAwesomeIcon icon={faPlus} /> New Canvas...</NavLink>
+                <NavLink href="#" onClick={this.openNewCanvasModal} aria-label="New Canvas"><FontAwesomeIcon icon={faPlus} /> {i18n.t('navbar_newcanvas.label')}</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#" onClick={this.openImportModal}><FontAwesomeIcon icon={faUpload} /> Import...</NavLink>
+                <NavLink href="#" onClick={this.openImportModal} aria-label="Import Canvas"><FontAwesomeIcon icon={faUpload} /> {i18n.t('navbar_import.label')}</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#" onClick={this.openExportModal}><FontAwesomeIcon icon={faDownload} /> Export...</NavLink>
+                <NavLink href="#" onClick={this.openExportModal} aria-label="Export Canvas"><FontAwesomeIcon icon={faDownload} /> {i18n.t('navbar_export.label')}</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>Options</DropdownToggle>
+                <DropdownToggle nav caret>{i18n.t('navbar_options.label')}</DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>Terms of Use</DropdownItem>
-                  <DropdownItem href="#" onClick={this.openHelpModal}>Help</DropdownItem>
+                  <DropdownItem>{i18n.t('navbar_terms.label')}</DropdownItem>
+                  <DropdownItem href="#" onClick={this.openHelpModal}>{i18n.t('navbar_help.label')}</DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>Contribute</DropdownItem>
+                  <DropdownItem>{i18n.t('navbar_contribute.label')}</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
@@ -320,6 +330,7 @@ AppNav.propTypes = {
   exportModel: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   createNewCanvas: PropTypes.func.isRequired,
+  updateCanvasTitle: PropTypes.func.isRequired,
 };
 
 export default AppNav;
