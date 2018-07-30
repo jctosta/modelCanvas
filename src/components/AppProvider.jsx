@@ -52,8 +52,6 @@ class AppProvider extends Component {
         isEmpty: true,
       },
       language: 'pt',
-      alertMessage: {},
-      showAlertMessage: false,
       canvasModified: false,
       getAppName: this.getAppName.bind(this),
       addCard: this.addCard.bind(this),
@@ -64,8 +62,6 @@ class AppProvider extends Component {
       updateStorage: this.updateStorage.bind(this),
       removeCard: this.removeCard.bind(this),
       createNewCanvas: this.createNewCanvas.bind(this),
-      dismissAlertMessage: this.dismissAlertMessage.bind(this),
-      displayAlertMessage: this.displayAlertMessage.bind(this),
       toggleModified: this.toggleModified.bind(this),
       cleanStorage: this.cleanStorage.bind(this),
     };
@@ -98,23 +94,6 @@ class AppProvider extends Component {
   toggleModified() {
     this.setState({
       canvasModified: true,
-    });
-  }
-
-  displayAlertMessage(message, severity) {
-    this.setState({
-      alertMessage: {
-        message,
-        severity,
-      },
-      showAlertMessage: true,
-    });
-  }
-
-  dismissAlertMessage() {
-    this.setState({
-      showAlertMessage: false,
-      alertMessage: {},
     });
   }
 
@@ -187,7 +166,6 @@ class AppProvider extends Component {
     });
     // Persisting data on storage
     this.toggleModified();
-    this.state.displayAlertMessage('Card successfully created.', 'success');
   }
 
   updateCanvasTitle(title) {
@@ -203,7 +181,8 @@ class AppProvider extends Component {
     this.setState({
       canvas,
     });
-    this.toggleModified();
+    this.updateStorage();
+    // this.toggleModified();
     AppProvider.setCurrentPage('canvas');
   }
 
@@ -231,7 +210,6 @@ class AppProvider extends Component {
       canvas: newCanvas,
     });
     this.toggleModified();
-    this.state.displayAlertMessage('Card successfully updated.', 'success');
   }
 
   updateStorage() {
@@ -239,13 +217,11 @@ class AppProvider extends Component {
     this.setState({
       canvasModified: false,
     });
-    this.state.displayAlertMessage('Storage successfully updated.', 'success');
   }
 
   cleanStorage() {
     localStorage.clear();
     this.toggleModified();
-    this.state.displayAlertMessage('Storage successfully cleaned.', 'success');
   }
 
   removeCard(cardId) {

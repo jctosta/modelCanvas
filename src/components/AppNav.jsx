@@ -20,7 +20,6 @@ import Form from 'reactstrap/lib/Form';
 import Label from 'reactstrap/lib/Label';
 import Input from 'reactstrap/lib/Input';
 import FormGroup from 'reactstrap/lib/FormGroup';
-import Alert from 'reactstrap/lib/Alert';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlus from '@fortawesome/fontawesome-free-solid/faPlus';
 import faUpload from '@fortawesome/fontawesome-free-solid/faUpload';
@@ -162,9 +161,17 @@ class AppNav extends React.Component {
     const dataURL = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(updatedCanvas))}`;
 
     const anchor = document.createElement('a');
-    anchor.setAttribute('href', dataURL);
-    anchor.setAttribute('download', `${snakeCase(this.props.title)}.json`);
+    anchor.download = `${snakeCase(this.props.title)}.json`;
+    anchor.href = dataURL;
+    anchor.target = '_self';
+    document.body.appendChild(anchor);
+    // anchor.setAttribute('href', dataURL);
+    // anchor.setAttribute('download', `${snakeCase(this.props.title)}.json`);
+    // anchor.setAttribute('target', '_self');
+
     anchor.click();
+
+    document.body.removeChild(anchor);
 
     this.openExportModal();
   }
@@ -315,9 +322,9 @@ class AppNav extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
-        <div className="container-fluid" style={{ paddingTop: '70px' }}>
+        {/* <div className="container-fluid" style={{ paddingTop: '70px' }}>
           <Alert color={this.props.alertMessage.severity} isOpen={this.props.showAlertMessage} toggle={this.props.dismissAlert}>{this.props.alertMessage.message}</Alert>
-        </div>
+        </div> */}
       </div>
 
     );

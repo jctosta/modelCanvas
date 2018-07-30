@@ -9,23 +9,10 @@ import Help from './components/Help';
 
 class App extends Component {
   static renderPage(context) {
-    const page = window.location.hash;
-    let element = (<br />);
-    switch (page) {
-      case '#home':
-        element = (<Home title={context.getAppName()} />);
-        break;
-      case '#canvas':
-        element = (<Canvas source={context.canvas} />);
-        break;
-      case '#help':
-        element = (<Help />);
-        break;
-      default:
-        element = (<Home title={context.appName} />);
-        break;
+    if (!context.canvas.isEmpty) {
+      return <Canvas source={context.canvas} />;
     }
-    return element;
+    return <Home title={context.getAppName()} />;
   }
 
   render() {
@@ -41,10 +28,6 @@ class App extends Component {
                 title={context.canvas.title}
                 updateCanvasTitle={context.updateCanvasTitle}
                 createNewCanvas={context.createNewCanvas}
-                showAlertMessage={context.showAlertMessage}
-                alertMessage={context.alertMessage}
-                displayAlert={context.displayAlertMessage}
-                dismissAlert={context.dismissAlertMessage}
               />)
             }
           </AppContext.Consumer>

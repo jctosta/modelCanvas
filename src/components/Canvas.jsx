@@ -62,7 +62,7 @@ const Canvas = (props) => {
   // const buildCanvas = source => source.containers.map(buildContainers);
 
   return (
-    <div className="container-fluid h-100" style={{ paddingTop: '0' }}>
+    <div className="container-fluid h-100" style={{ paddingTop: '70px' }}>
       <div className="row" style={{ marginBottom: '60px' }}>
         {(buildCanvas(props.source))}
       </div>
