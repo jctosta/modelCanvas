@@ -23,3 +23,28 @@ body {
 .orange-canvas {
   border-left: 5px solid #F06005;
 }
+
+.document-view {
+  font-family: serif;
+  .document-title {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .container-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2em;
+  }
+  .container-title::before, .container-title::after {
+    content: "❖";
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: bold;
+  }
+  .container-subtitle::before {
+    content: "";
+    border-left: 3px solid darkslategray;
+    padding-left: 5px;
+  }
+}

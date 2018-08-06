@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import nanoid from 'nanoid';
+import Mustache from 'mustache';
 import AppContext from './AppContext';
 
 import leanCanvas from '../templates/lean.json';
@@ -64,8 +65,11 @@ class AppProvider extends Component {
       createNewCanvas: this.createNewCanvas.bind(this),
       toggleModified: this.toggleModified.bind(this),
       cleanStorage: this.cleanStorage.bind(this),
+      getMustacheView: this.getMustacheView.bind(this),
     };
   }
+
+
 
   componentWillMount() {
     if (AppProvider.isStorageEmpty()) {
@@ -81,6 +85,17 @@ class AppProvider extends Component {
     // } else {
     //   this.setCurrentPage('canvas');
     // }
+  }
+
+  getMustacheView(documentTemplate) {
+    const tempCanvas = this.state.canvas;
+    tempCanvas.containers = tempCanvas.containers.map((c) => {
+      const tempContainer = c;
+      tempContainer.cards = tempCanvas.cards.filter(e => e.parentId === c.id);
+      return tempContainer;
+    });
+
+    return Mustache.render(documentTemplate, tempCanvas);
   }
 
   static setCurrentPage(pageName) {

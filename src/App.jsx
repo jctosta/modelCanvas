@@ -28,6 +28,7 @@ class App extends Component {
                 title={context.canvas.title}
                 updateCanvasTitle={context.updateCanvasTitle}
                 createNewCanvas={context.createNewCanvas}
+                documentView={context.getMustacheView}
               />)
             }
           </AppContext.Consumer>

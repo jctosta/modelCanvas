@@ -24,10 +24,14 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlus from '@fortawesome/fontawesome-free-solid/faPlus';
 import faUpload from '@fortawesome/fontawesome-free-solid/faUpload';
 import faDownload from '@fortawesome/fontawesome-free-solid/faDownload';
+import faFileAlt from '@fortawesome/fontawesome-free-solid/faFileAlt';
+import faExpand from '@fortawesome/fontawesome-free-solid/faExpand';
 import ContentEditable from 'react-contenteditable';
 import snakeCase from 'lodash/snakeCase';
+// import JSPDF from 'jspdf';
 
 import i18n from '../i18n/i18n';
+
 
 // import Ajv from 'ajv';
 // import canvasSchema from '../data/canvas-schema.json';
@@ -58,6 +62,7 @@ class AppNav extends React.Component {
     this.openExportModal = this.openExportModal.bind(this);
     this.openNewCanvasModal = this.openNewCanvasModal.bind(this);
     this.openHelpModal = this.openHelpModal.bind(this);
+    this.openDocumentViewModal = this.openDocumentViewModal.bind(this);
 
     // Event handlers
     this.handleDrop = this.handleDrop.bind(this);
@@ -78,6 +83,7 @@ class AppNav extends React.Component {
       exportModal: false,
       newCanvasModal: false,
       helpModal: false,
+      documentViewModal: false,
     };
   }
 
@@ -114,6 +120,12 @@ class AppNav extends React.Component {
   openHelpModal() {
     this.setState({
       helpModal: !this.state.helpModal,
+    });
+  }
+
+  openDocumentViewModal() {
+    this.setState({
+      documentViewModal: !this.state.documentViewModal,
     });
   }
 
@@ -280,6 +292,36 @@ class AppNav extends React.Component {
     );
   }
 
+  renderDocumentViewModal() {
+    const html = this.props.documentView(`<h1 class="document-title">{{title}}</h1>
+      {{#containers}}
+        <h2 class="container-title">{{title}}</h2>
+        <blockquote class="container-subtitle">{{description}}</blockquote>
+
+        <ul>
+        {{#cards}}
+          <li class="card-label">{{label}}</li>
+        {{/cards}}
+        </ul>
+      {{/containers}}`);
+    // const doc = new JSPDF();
+    // doc.fromHTML(html);
+    // doc.save('arquivo.pdf');
+
+    return (
+      <Modal isOpen={this.state.documentViewModal} toggle={this.openDocumentViewModal} centered size="lg">
+        <ModalHeader toggle={this.openDocumentViewModal}>{i18n.t('modal_document_title.label')}</ModalHeader>
+        <ModalBody style={{ overflow: 'auto', height: '60vh' }}>
+          <div className="document-view" dangerouslySetInnerHTML={{ __html: html }} />
+        </ModalBody>
+        <ModalFooter>
+          <Button size="sm" color="primary" type="submit">{i18n.t('modal_document_button_markdown.label')}</Button>
+          <Button size="sm" color="secondary" onClick={this.openDocumentViewModal}>{i18n.t('modal_button_close.label')}</Button>
+        </ModalFooter>
+      </Modal>
+    );
+  }
+
   render() {
     return (
       <div>
@@ -292,6 +334,8 @@ class AppNav extends React.Component {
         { this.renderNewCanvasModal() }
         {/* Render Help Modal Dialog */}
         { this.renderHelpModal() }
+        {/* Render Document View Modal */}
+        { this.renderDocumentViewModal() }
 
         <Navbar color="light" light expand="md" fixed="top" className="border-bottom">
           <NavbarBrand href="#home"><img height="28" src={`${process.env.PUBLIC_URL}/images/LogoModelCanvasApp.svg`} alt={this.props.name} /></NavbarBrand>
@@ -310,6 +354,12 @@ class AppNav extends React.Component {
               <NavItem>
                 <NavLink href="#" onClick={this.openExportModal} aria-label="Export Canvas"><FontAwesomeIcon icon={faDownload} /> {i18n.t('navbar_export.label')}</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="#" onClick={this.openDocumentViewModal} aria-label="Document View"><FontAwesomeIcon icon={faFileAlt} /> {i18n.t('navbar_documentview.label')}</NavLink>
+              </NavItem>
+              {/* <NavItem>
+                <NavLink href="#" onClick={this.openDocumentViewModal} aria-label="Expand Canvas"><FontAwesomeIcon icon={faFileAlt} /> {i18n.t('navbar_documentview.label')}</NavLink>
+              </NavItem> */}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>{i18n.t('navbar_options.label')}</DropdownToggle>
                 <DropdownMenu right>
