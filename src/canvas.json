@@ -1,0 +1,104 @@
+{
+    "name": "Business Model Canvas Example",
+    "containers": [
+        {
+            "label": "Partners",
+            "description": "",
+            "type": "partners-container",
+            "items": [
+                {
+                    "content": "Teste",
+                    "color": "blue"
+                }
+            ]
+        },
+        {
+            "label": "Activities",
+            "description": "",
+            "type": "activities-container",
+            "items": [
+                {
+                    "content": "Teste",
+                    "color": "red"
+                }
+            ]
+        },
+        {
+            "label": "Propositions",
+            "description": "",
+            "type": "propositions-container",
+            "items": [
+                {
+                    "content": "Teste",
+                    "color": "green"
+                }
+            ]
+        },
+        {
+            "label": "Relationships",
+            "description": "",
+            "type": "relationships-container",
+            "items": [
+                {
+                    "content": "Teste",
+                    "color": "blue"
+                }
+            ]
+        },
+        {
+            "label": "Segments",
+            "description": "",
+            "type": "segments-container",
+            "items": [
+                {
+                    "content": "Teste",
+                    "color": "blue"
+                }
+            ]
+        },
+        {
+            "label": "Resources",
+            "description": "",
+            "type": "resources-container",
+            "items": [
+                {
+                    "content": "Teste",
+                    "color": "red"
+                }
+            ]
+        },
+        {
+            "label": "Channels",
+            "description": "",
+            "type": "channels-container",
+            "items": [
+                {
+                    "content": "Teste",
+                    "color": "green"
+                }
+            ]
+        },
+        {
+            "label": "Cost",
+            "description": "",
+            "type": "cost-container",
+            "items": [
+                {
+                    "content": "Teste",
+                    "color": "red"
+                }
+            ]
+        },
+        {
+            "label": "Revenue",
+            "description": "",
+            "type": "revenue-container",
+            "items": [
+                {
+                    "content": "Teste",
+                    "color": "red"
+                }
+            ]
+        }
+    ]
+}

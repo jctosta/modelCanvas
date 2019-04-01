@@ -1,0 +1,10 @@
+---
+- name: ModelCanvas Server
+  hosts: modelCanvas
+  become: true
+
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present

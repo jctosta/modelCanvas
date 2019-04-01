@@ -1,0 +1,52 @@
+---
+- name: ModelCanvas Server
+  hosts: modelCanvas
+  become: true
+
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+    # - name: Add RethinkDB Repository
+    #   apt_repository:
+    #     repo: deb http://download.rethinkdb.com/apt zesty main
+    #     state: present
+    #     filename: rethinkdb
+    # - name: Install RethinkDB
+    #   apt:
+    #     name: rethinkdb
+    #     update_cache: yes
+    #     state: present
+    - name: Install Build Deps
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - build-essential
+        - protobuf-compiler
+        - python
+        - libprotobuf-dev
+        - libcurl4-openssl-dev
+        - libboost-all-dev
+        - libncurses5-dev
+        - libjemalloc-dev
+        - wget
+        - m4
+    # - name: Download RethinkDB Source
+    #   get_url:
+    #     url: https://download.rethinkdb.com/dist/rethinkdb-2.3.6.tgz
+    #     dest: /tmp/rethinkdb-2.3.6.tgz
+    - name: Extract RethinkDB Source
+      unarchive:
+        src: https://download.rethinkdb.com/dist/rethinkdb-2.3.6.tgz
+        dest: /tmp/
+        remote_src: yes
+    # - name: Configure Source
+    #   command: "./configure --allow-fetch"
+    #   args:
+    #     chdir: "/tmp/rethinkdb-2.3.6"
+    # - name: Make and Install RethinkDB
+    #   make:
+    #     chdir: /tmp/rethinkdb-2.3.6
+    #     target: install

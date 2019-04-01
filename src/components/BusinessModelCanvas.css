@@ -1,0 +1,27 @@
+.canvas-grid {
+    display: grid;
+    grid-template-areas: "partners activities propositions relationships segments"
+                         "partners resources propositions channels segments"
+                         "cost cost revenue revenue revenue";
+    /* grid-gap: 1rem; */
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: 30vh 30vh 40vh;
+}
+
+.partners-container { grid-area: partners; }
+
+.activities-container { grid-area: activities; }
+
+.propositions-container { grid-area: propositions; }
+
+.relationships-container { grid-area: relationships; }
+
+.segments-container { grid-area: segments; }
+
+.resources-container { grid-area: resources; }
+
+.channels-container { grid-area: channels; }
+
+.cost-container { grid-area: cost; }
+
+.revenue-container { grid-area: revenue };
