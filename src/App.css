@@ -6,9 +6,10 @@ body {
 
 .app {
   display: grid;
-  grid-template-areas: "sidebar main main";
-  grid-template-columns: 15vw 45vw 40vw;
-  grid-template-rows: 100vh;
+  grid-template-areas: "sidebar main";
+  grid-template-columns: minmax(100px, 300px) 1fr;
+  grid-template-rows: auto;
+  height: 100vh;
 }
 
 .sidebar {

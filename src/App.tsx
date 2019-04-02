@@ -7,9 +7,11 @@ import { Canvas, Color } from './common/canvas-types';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faPlusCircle);
+library.add(faTimes);
+library.add(faEdit);
 
 const baseDocument: Canvas = require('./canvas.json');
 
@@ -18,8 +20,8 @@ class App extends Component<any, Canvas> {
     super(props);
     this.state = baseDocument;
 
-    documentUpdate.joinRoom('testRoom');
-    documentUpdate.subscribeToDocumentUpdate((err: Error, doc: any) => this.setState(doc));
+    // documentUpdate.joinRoom('testRoom');
+    // documentUpdate.subscribeToDocumentUpdate((err: Error, doc: any) => this.setState(doc));
 
   }
   render() {

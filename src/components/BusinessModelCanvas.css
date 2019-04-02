@@ -4,7 +4,7 @@
                          "partners resources propositions channels segments"
                          "cost cost revenue revenue revenue";
     /* grid-gap: 1rem; */
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto-fill;
     grid-template-rows: 30vh 30vh 40vh;
 }
 
