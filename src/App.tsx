@@ -16,8 +16,6 @@ import { CanvasManager } from './common/CanvasManager';
 import * as uniqid from 'uniqid';
 import { render } from 'react-dom';
 
-library.add(faPlusCircle);
-
 const baseDocument: Canvas = require('./canvas.json');
 
 const App = () => {
