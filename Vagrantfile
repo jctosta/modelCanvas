@@ -16,12 +16,12 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = vm_name
   config.vm.box_check_update = false
 
-  # if Vagrant.has_plugin?("vagrant-proxyconf") && is_proxy
-  #   config.proxy.http     = "http://v221d696.prevnet:8080/"
-  #   config.proxy.https    = "http://v221d696.prevnet:8080/"
-  #   config.apt_proxy.http = "http://v221d696.prevnet:8080/"
-  #   config.apt_proxy.https = "http://v221d696.prevnet:8080/"
-  # end
+  if Vagrant.has_plugin?("vagrant-proxyconf") && is_proxy
+    config.proxy.http     = "http://v221d696.prevnet:8080/"
+    config.proxy.https    = "http://v221d696.prevnet:8080/"
+    config.apt_proxy.http = "http://v221d696.prevnet:8080/"
+    config.apt_proxy.https = "http://v221d696.prevnet:8080/"
+  end
 
   # Mapeamento das portas guest e host
   config.vm.network "forwarded_port", guest: 3000, host: 3000

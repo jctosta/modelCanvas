@@ -4,11 +4,13 @@ export enum Color {
 }
 
 export interface ContainerItem {
+    id: string,
     content: string,
     color: Color
 }
 
 export interface Container {
+  id: string,
   label: string,
   description: string,
   type: string,

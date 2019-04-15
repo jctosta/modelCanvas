@@ -1,50 +1,74 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import logo from './logo.svg';
+import '@blueprintjs/core/lib/css/blueprint.css';
+import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 import './App.css';
 import BusinessModelCanvas from './components/BusinessModelCanvas';
 import * as documentUpdate from './events/documentUpdate';
-import { Canvas, Color } from './common/canvas-types';
+import { Canvas, Color, ContainerItem } from './common/canvas-types';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { Button, Navbar, NavbarGroup, NavbarHeading, NavbarDivider } from '@blueprintjs/core';
+import { CanvasManager } from './common/CanvasManager';
+
+import * as uniqid from 'uniqid';
+import { render } from 'react-dom';
 
 library.add(faPlusCircle);
 
 const baseDocument: Canvas = require('./canvas.json');
 
-class App extends Component<any, Canvas> {
-  constructor(props: any) {
-    super(props);
-    this.state = baseDocument;
+const App = () => {
+  
+  const [canvas, setCanvas] = useState(baseDocument);
+  const canvasManager = new CanvasManager(baseDocument);
 
-    documentUpdate.joinRoom('testRoom');
-    documentUpdate.subscribeToDocumentUpdate((err: Error, doc: any) => this.setState(doc));
+  const addItem = (itemContent: string, parentContainer: string) => {
+    let containerItem: ContainerItem = {
+      id: uniqid.default(),
+      content: itemContent,
+      color: Color.blue
+    };
+
+    canvasManager.insertContainerItem(containerItem, parentContainer);
+    
+    setCanvas(canvasManager.canvas);
+  }
+
+  const updateItem = (itemContent: string, itemId: string, parentContainer: string) => {
+    let containerItem: ContainerItem | undefined = canvasManager.findContainerItemById(itemId, parentContainer);
+    if (containerItem) {
+      containerItem.content = itemContent;
+      canvasManager.insertContainerItem(containerItem, parentContainer);
+      setCanvas(canvasManager.canvas);
+    }
 
   }
-  render() {
-    return (
-      <div className="app">
-        <aside className="sidebar">
-          <h1 className="app-title">modelCanvas</h1>
-          <ul className="options">
-            <li className="canvas-title">Business Model Canvas</li>
-            <li className="sidebar-label">Actions</li>
-            <li><button><FontAwesomeIcon icon="plus-circle" /> Novo Canvas...</button></li>
-            <li><button><FontAwesomeIcon icon="plus-circle" /> Importar...</button></li>
-            <li><button><FontAwesomeIcon icon="plus-circle" /> Exportar...</button></li>
-            <li className="sidebar-label">Other Options</li>
-            <li><button><FontAwesomeIcon icon="plus-circle" /> Termos de Uso...</button></li>
-            <li><button><FontAwesomeIcon icon="plus-circle" /> Ajuda...</button></li>
-            <li><button><FontAwesomeIcon icon="plus-circle" /> Contribuir...</button></li>
-          </ul>
-        </aside>
-        <main className="canvas">
-          <BusinessModelCanvas document={this.state} />
-        </main>
-      </div>
-    );
-  }
-}
+
+  return (
+    <div className="app">
+      <Navbar>
+        <NavbarGroup align="left">
+          <NavbarHeading>modelCanvas.app</NavbarHeading>
+          <NavbarDivider />
+          <Button className="bp3-minimal" icon="home" text="Home" />
+          <Button className="bp3-minimal" icon="document" text="Documents" />
+          <NavbarDivider />
+        </NavbarGroup>
+        <NavbarGroup align="right">
+          <NavbarDivider />
+          <Button className="bp3-minimal" icon="user" />
+          <Button className="bp3-minimal" icon="notifications" />
+          <Button className="bp3-minimal" icon="cog" />
+        </NavbarGroup>
+      </Navbar>
+      <main className="canvas">
+        <BusinessModelCanvas document={canvas} addItem={addItem} />
+      </main>
+    </div>
+  );
+};
 
 export default App;

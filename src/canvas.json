@@ -2,99 +2,117 @@
     "name": "Business Model Canvas Example",
     "containers": [
         {
+            "id": "0",
             "label": "Partners",
             "description": "",
             "type": "partners-container",
             "items": [
                 {
+                    "id": "0",
                     "content": "Teste",
                     "color": "blue"
                 }
             ]
         },
         {
+            "id": "1",
             "label": "Activities",
             "description": "",
             "type": "activities-container",
             "items": [
                 {
+                    "id": "0",
                     "content": "Teste",
                     "color": "red"
                 }
             ]
         },
         {
+            "id": "2",
             "label": "Propositions",
             "description": "",
             "type": "propositions-container",
             "items": [
                 {
+                    "id": "0",
                     "content": "Teste",
                     "color": "green"
                 }
             ]
         },
         {
+            "id": "3",
             "label": "Relationships",
             "description": "",
             "type": "relationships-container",
             "items": [
                 {
+                    "id": "0",
                     "content": "Teste",
                     "color": "blue"
                 }
             ]
         },
         {
+            "id": "4",
             "label": "Segments",
             "description": "",
             "type": "segments-container",
             "items": [
                 {
+                    "id": "0",
                     "content": "Teste",
                     "color": "blue"
                 }
             ]
         },
         {
+            "id": "5",
             "label": "Resources",
             "description": "",
             "type": "resources-container",
             "items": [
                 {
+                    "id": "0",
                     "content": "Teste",
                     "color": "red"
                 }
             ]
         },
         {
+            "id": "6",
             "label": "Channels",
             "description": "",
             "type": "channels-container",
             "items": [
                 {
+                    "id": "0",
                     "content": "Teste",
                     "color": "green"
                 }
             ]
         },
         {
+            "id": "7",
             "label": "Cost",
             "description": "",
             "type": "cost-container",
             "items": [
                 {
+                    "id": "0",
                     "content": "Teste",
                     "color": "red"
                 }
             ]
         },
         {
+            "id": "8",
             "label": "Revenue",
             "description": "",
             "type": "revenue-container",
             "items": [
                 {
+                    "id": "0",
                     "content": "Teste",
                     "color": "red"
                 }

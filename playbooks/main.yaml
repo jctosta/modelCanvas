@@ -8,3 +8,11 @@
       apt:
         name: apache2
         state: present
+    - name: Install PHP
+      apt:
+        name: php
+        state: present
+    - name: Install MySQL Server
+      apt:
+        name: mysql-server
+        state: present

@@ -5,7 +5,7 @@
                          "cost cost revenue revenue revenue";
     /* grid-gap: 1rem; */
     grid-template-columns: auto auto auto auto auto;
-    grid-template-rows: 30vh 30vh 40vh;
+    grid-template-rows: 30vh 30vh 30vh;
 }
 
 .partners-container { grid-area: partners; }
