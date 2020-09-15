@@ -1,100 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import Navbar from './components/Navbar';
 import Canvas from './components/Canvas';
 import Sidebar from './components/Sidebar';
 
+import { ADD_CARD, REMOVE_CARD, EDIT_CARD } from './redux/actionTypes';
+
 import './style/App.scss';
-// import halfmoon from 'halfmoon';
-// import './App.css';
-// import 'halfmoon/css/halfmoon.min.css';
 
-function App() {
+const mapStateToProps = state => {
+  return { canvas: state }
+}
 
-  const [canvas, setCanvas] = useState({ canvas: {
-    name: 'Meu Canvas',
-    type: 'business_model_canvas',
-    tiles: [
-        {
-            id: 'BMC_PARCERIAS',
-            title: 'Parcerias Principais',
-            size: 'is-one-quarter',
-            cards: [
-                {
-                    content: 'Lorem Ipsum Dolor Sit Amet'
-                },
-                {
-                    content: 'Viajando pra Brasilia'
-                }
-            ]
-        },
-        {
-            id: 'BMC_ATIVIDADES',
-            title: 'Atividades Principais',
-            size: 'is-one-quarter',
-            cards: []
-        },
-        {
-            id: 'BMC_RECURSOS',
-            title: 'Recursos Principais',
-            size: 'is-one-quarter',
-            cards: []
-        },
-        {
-            id: 'BMC_VALOR',
-            title: 'Proposta de Valor',
-            size: 'is-one-quarter',
-            cards: []
-        },
-        {
-            id: 'BMC_RELACIONAMENTO',
-            title: 'Relacionamento com Clientes',
-            size: 'is-one-third',
-            cards: []
-        },
-        {
-            id: 'BMC_CANAIS',
-            title: 'Canais',
-            size: 'is-one-third',
-            cards: []
-        },
-        {
-            id: 'BMC_SEGMENTOS',
-            title: 'Segmentos de Clientes',
-            size: 'is-one-third',
-            cards: []
-        },
-        {
-            id: 'BMC_CUSTOS',
-            title: 'Estrutura de Custos',
-            size: 'is-half',
-            cards: []
-        },
-        {
-            id: 'BMC_RECEITA',
-            title: 'Fontes de Receita',
-            size: 'is-half',
-            cards: []
+const mapDispatchToProps = function(dispatch, ownProps) {
+  return {
+    addCanvasTileCard: function(tileId, content) {
+      dispatch({ 
+        type: ADD_CARD, 
+        payload: { 
+          tileId, 
+          body: content 
+        } 
+      });
+    },
+    removeCanvasTileCard: function(tileId, cardId) {
+      dispatch({ 
+        type: REMOVE_CARD,
+        payload: {
+          cardId,
+          tileId
         }
-    ]
-  } });
-
-  const addCanvasTileCard = (tileId, content) => {
-    console.log('Add Card');
-    canvas.canvas.tiles[tileId].cards.push({ content: content });
-    setCanvas({...canvas});
+      });
+    },
+    updateCanvasTileCard: function(tileId, cardId, newContent) {
+      dispatch({ 
+        type: EDIT_CARD,
+        payload: {
+          cardId,
+          tileId,
+          body: newContent
+        }
+      });
+    }
   }
+}
 
-  const removeCanvasTileCard = (tileId, cardId) => {
-    console.log('Remove Card');
-    canvas.canvas.tiles[tileId].cards.splice(cardId, 1);
-    setCanvas({...canvas});
-  }
-
-  const updateCanvasTileCard = (tileId, cardId, newContent) => {
-    console.log('Update Card');
-    canvas.canvas.tiles[tileId].cards[cardId].content = newContent;
-    setCanvas({...canvas});
-  }
+function App(props) {
 
   return (
     <div>
@@ -107,10 +58,10 @@ function App() {
           </div>
           <div className="column is-10 is-fullheight">
             <Canvas 
-              source={canvas} 
-              addCard={addCanvasTileCard.bind(this)} 
-              removeCard={removeCanvasTileCard.bind(this)}
-              updateCard={updateCanvasTileCard.bind(this)}
+              source={props.canvas} 
+              addCard={props.addCanvasTileCard.bind(this)} 
+              removeCard={props.removeCanvasTileCard.bind(this)}
+              updateCard={props.updateCanvasTileCard.bind(this)}
             />
           </div>
         </div>
@@ -120,4 +71,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,0 +1,1 @@
+export const getCanvasState = store => store.canvas;
